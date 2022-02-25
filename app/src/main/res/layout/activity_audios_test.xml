@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:id="@+id/ll_anchor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/ll_No_PhotoAlbums"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="invisible">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivNo_PhotoAlbum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:srcCompat="@drawable/ic_audio_empty_icon" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtNo_PhotoAlbum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:text="@string/lbl_Photos_Album_no_Album"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/Color_Secondary_Font"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <GridView
+                android:id="@+id/AlbumsGalleryGrid"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:listSelector="@android:color/transparent"
+                android:numColumns="2"
+                android:scrollbars="none"
+                android:stretchMode="columnWidth" />
+
+            <ProgressBar
+                android:id="@+id/prbLoading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btn_Add_Album"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="16dp"
+                android:backgroundTint="@color/app_color"
+                android:contentDescription="@string/app_name"
+                android:onClick="fabClicked"
+                android:src="@drawable/icon_folder_new"
+                app:fabSize="normal"
+                app:fab_elevation="@dimen/_2sdp"
+                tools:ignore="UsingOnClickInXml" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_EditAlbum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <include layout="@layout/bottomsheet_rename_delete" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_entryListItemContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/Color_Menu_Thumb_Hover"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_entryTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/entry_field"
+        android:textColor="@color/ColorAppTheme"
+        android:textSize="15sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <EditText
+            android:id="@+id/et_entryValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:layout_toLeftOf="@+id/cb_entryIsSecured"
+            android:background="@drawable/white_et_curve_edge"
+            android:ems="10"
+            android:inputType="textCapCharacters"
+            android:textSize="13sp" />
+
+        <CheckBox
+            android:id="@+id/cb_entryIsSecured"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_vertical"
+            android:button="@drawable/btn_import_checkbox"
+            android:visibility="gone" />
+    </RelativeLayout>
+</LinearLayout>

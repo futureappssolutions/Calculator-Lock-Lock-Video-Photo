@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="standard_margin">16dp</dimen>
+    <dimen name="panel_1_button_text_land">24sp</dimen>
+    <dimen name="panel_1_button_text_port">24sp</dimen>
+    <dimen name="panel_2_button_text_land">20sp</dimen>
+    <dimen name="panel_2_button_text_port">18sp</dimen>
+    <dimen name="display_primary_text_land">34sp</dimen>
+    <dimen name="display_primary_text_port">56sp</dimen>
+    <dimen name="display_secondary_text_land">34sp</dimen>
+    <dimen name="display_secondary_text_port">34dp</dimen>
+    <dimen name="default_preview_height">40dp</dimen>
+    <dimen name="default_preview_image_height">36dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="banner_height">60dp</dimen>
+</resources>

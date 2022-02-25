@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/txtSongTitle">
+
+            <LinearLayout
+                android:layout_width="@dimen/_180sdp"
+                android:layout_height="@dimen/_180sdp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/shape_player"
+                android:gravity="center">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/la_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/lottie_music_player" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtSongTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/llSecond"
+            android:fontFamily="@font/font_regular"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="2"
+            android:padding="@dimen/_15ssp"
+            android:text="@string/lblaudioplayer"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16ssp" />
+
+        <LinearLayout
+            android:id="@+id/llSecond"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_above="@+id/ll_Bottom"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/songCurrentDurationLabel"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_semi_bold"
+                android:gravity="center"
+                android:text="00:00"
+                android:textColor="@color/app_color"
+                android:textSize="@dimen/_11ssp" />
+
+            <androidx.appcompat.widget.AppCompatSeekBar
+                android:id="@+id/audioProgressbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:progress="0"
+                android:progressBackgroundTint="@color/black"
+                android:progressTint="@color/app_color" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/songTotalDurationLabel"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_semi_bold"
+                android:gravity="center"
+                android:text="00:00"
+                android:textColor="@color/app_color"
+                android:textSize="@dimen/_11ssp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_Bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/previous_track"
+                android:onClick="btnPlayerPreviousTrackClick"
+                tools:ignore="UsingOnClickInXml" />
+
+            <LinearLayout
+                android:id="@+id/llPlayerPlayPause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/pause_track"
+                android:gravity="center"
+                android:onClick="btnPlayerPlayPauseClick"
+                android:orientation="horizontal"
+                tools:ignore="UsingOnClickInXml" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnPlayerForwardTrack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/next_track"
+                android:onClick="btnPlayerForwardTrackClick"
+                tools:ignore="UsingOnClickInXml" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

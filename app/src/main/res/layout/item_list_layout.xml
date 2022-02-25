@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/_5sdp"
+    android:paddingTop="@dimen/_5sdp"
+    android:paddingEnd="@dimen/_5sdp"
+    android:paddingBottom="@dimen/_2sdp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_margin="@dimen/_1sdp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="@dimen/_3sdp">
+
+        <RelativeLayout
+            android:id="@+id/ll_thumimage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/rlImage"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="match_parent">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/iv_album_thumbnil"
+                    android:layout_width="@dimen/_65sdp"
+                    android:layout_height="@dimen/_65sdp"
+                    android:layout_centerInParent="true"
+                    android:padding="@dimen/_3sdp"
+                    android:scaleType="fitXY"
+                    app:riv_border_width="0dp"
+                    app:riv_corner_radius="@dimen/_5sdp"
+                    app:riv_mutate_background="true" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/thumbImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/playthumbImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:padding="4dp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_textAlbumName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toStartOf="@+id/lbl_Count"
+                android:layout_toEndOf="@+id/rlImage"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textAlbumName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_semi_bold"
+                    android:singleLine="true"
+                    android:text="Photos sfsfdf"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/lbl_Date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_medium"
+                    android:paddingTop="@dimen/_2sdp"
+                    android:paddingBottom="@dimen/_2sdp"
+                    android:singleLine="true"
+                    android:text="Date: "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/lbl_Time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_regular"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="Time: "
+                    android:textSize="@dimen/_10ssp" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/lbl_Count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:background="@drawable/shape_app_color"
+                android:fontFamily="@font/font_semi_bold"
+                android:maxEms="6"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingTop="@dimen/_2sdp"
+                android:paddingEnd="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_2sdp"
+                android:singleLine="true"
+                android:text="1000"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp" />
+
+            <LinearLayout
+                android:id="@+id/ll_selection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/album_grid_item_boarder_unselect"
+                android:orientation="vertical" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

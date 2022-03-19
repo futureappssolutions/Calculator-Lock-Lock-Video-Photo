@@ -2,7 +2,6 @@ package com.calculator.vaultlocker.common;
 
 import android.app.Application;
 
-import com.applovin.sdk.AppLovinSdk;
 import com.calculator.vaultlocker.Ads.AppOpenManager;
 import com.google.android.gms.ads.MobileAds;
 
@@ -27,10 +26,6 @@ public class CustomApplicationClass extends Application {
 
         application = this;
 
-        AppLovinSdk.getInstance(this).setMediationProvider("max");
-        AppLovinSdk.initializeSdk(this, configuration -> {
-            // AppLovin SDK is initialized, start loading ads
-        });
 
         MobileAds.initialize(this, initializationStatus -> {
         });

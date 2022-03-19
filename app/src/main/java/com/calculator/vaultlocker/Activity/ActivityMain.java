@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -25,7 +24,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.calculator.vaultlocker.Adapter.MainAdapter;
-import com.calculator.vaultlocker.Ads.GoogleAppLovinAds;
+import com.calculator.vaultlocker.Ads.GoogleAds;
 import com.calculator.vaultlocker.Model.FeatureActivityEnt;
 import com.calculator.vaultlocker.R;
 import com.calculator.vaultlocker.common.FeatureActivityMethods;
@@ -77,7 +76,7 @@ public class ActivityMain extends AppCompatActivity implements AccelerometerList
         setContentView(R.layout.activity_main);
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        GoogleAppLovinAds.showBannerAds(ActivityMain.this, ll_banner);
+        GoogleAds.showBannerAds(ActivityMain.this, ll_banner);
 
         invalidateOptionsMenu();
 

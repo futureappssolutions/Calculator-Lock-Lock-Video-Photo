@@ -8,7 +8,7 @@ import android.os.Handler;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.calculator.vaultlocker.Ads.GoogleAppLovinAds;
+import com.calculator.vaultlocker.Ads.GoogleAds;
 import com.calculator.vaultlocker.R;
 import com.calculator.vaultlocker.common.Preferences;
 
@@ -37,21 +37,21 @@ public class ActivitySplash extends AppCompatActivity {
         Preferences.setBase_key("base_key");
 
         try {
-            GoogleAppLovinAds.allcount60 = new CountDownTimer(Integer.parseInt(Preferences.getAds_time()) * 1000L, 1000) {
+            GoogleAds.allcount60 = new CountDownTimer(Integer.parseInt(Preferences.getAds_time()) * 1000L, 1000) {
                 public void onTick(long millisUntilFinished) {
-                    GoogleAppLovinAds.adsdisplay = false;
+                    GoogleAds.adsdisplay = false;
                 }
 
                 public void onFinish() {
-                    GoogleAppLovinAds.adsdisplay = true;
+                    GoogleAds.adsdisplay = true;
                 }
             };
-            GoogleAppLovinAds.allcount60.start();
+            GoogleAds.allcount60.start();
         } catch (NumberFormatException ex) {
             ex.printStackTrace();
         }
 
-        GoogleAppLovinAds.preLoadAds(ActivitySplash.this);
+        GoogleAds.preLoadAds(ActivitySplash.this);
 
         new Handler().postDelayed(() -> {
             startActivity(new Intent(ActivitySplash.this, LoginActivity.class));

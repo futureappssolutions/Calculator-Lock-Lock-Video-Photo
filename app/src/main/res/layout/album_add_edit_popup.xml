@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ll_background"
-    android:layout_width="300dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
+    android:padding="10dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -73,7 +74,8 @@
                 android:paddingTop="12dp"
                 android:paddingBottom="12dp"
                 android:text="@string/lblsetting_SecurityCredentials_setpassword_Ok"
-                android:textColor="@color/black_color"
+                android:fontFamily="@font/font_semi_bold"
+                android:textColor="@color/white"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -91,9 +93,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="12dp"
+                android:fontFamily="@font/font_semi_bold"
                 android:paddingBottom="12dp"
                 android:text="@string/lblsetting_SecurityCredentials_setpassword_Cancel"
-                android:textColor="@color/black_color"
+                android:textColor="@color/white"
                 android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>

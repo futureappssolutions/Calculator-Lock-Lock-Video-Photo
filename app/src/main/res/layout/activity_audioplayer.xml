@@ -49,10 +49,10 @@
             android:gravity="center"
             android:marqueeRepeatLimit="marquee_forever"
             android:maxLines="2"
-            android:padding="@dimen/_15ssp"
+            android:padding="@dimen/_15sdp"
             android:text="@string/lblaudioplayer"
             android:textColor="@color/white"
-            android:textSize="@dimen/_16ssp" />
+            android:textSize="@dimen/_16sdp" />
 
         <LinearLayout
             android:id="@+id/llSecond"
@@ -72,7 +72,7 @@
                 android:gravity="center"
                 android:text="00:00"
                 android:textColor="@color/app_color"
-                android:textSize="@dimen/_11ssp" />
+                android:textSize="@dimen/_11sdp" />
 
             <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/audioProgressbar"
@@ -91,7 +91,7 @@
                 android:gravity="center"
                 android:text="00:00"
                 android:textColor="@color/app_color"
-                android:textSize="@dimen/_11ssp" />
+                android:textSize="@dimen/_11sdp" />
         </LinearLayout>
 
         <LinearLayout

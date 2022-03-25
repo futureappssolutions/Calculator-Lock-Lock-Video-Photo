@@ -108,7 +108,6 @@
     <string name="backup_emildilog_desc">If you don\'t set email address here, then your password will not be recovered. Any time you can set or change email address from Recovery of Credentials in Settings.</string>
     <string name="backup_emildilog_desctitle">Warning:</string>
     <string name="backup_emildilog_title">Enter email address to recover security credential</string>
-    <string name="bottom_sheet_behavior">android.support.design.widget.BottomSheetBehavior</string>
     <string name="cal_pin_text">Set calculator PIN and tap % sign to save</string>
     <string name="cal_pin_text_conf">Enter calculator PIN and tap % sign </string>
     <string name="cal_pin_text_confirm">Confirm calculator PIN and tap % sign to save</string>

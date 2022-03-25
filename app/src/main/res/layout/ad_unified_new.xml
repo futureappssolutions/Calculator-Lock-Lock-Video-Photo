@@ -23,7 +23,7 @@
                 android:layout_height="35dp"
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
-                android:src="@drawable/appiconround" />
+                android:src="@drawable/logo_round" />
 
             <LinearLayout
                 android:layout_width="0dp"

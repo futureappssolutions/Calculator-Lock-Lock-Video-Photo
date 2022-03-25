@@ -26,7 +26,7 @@
                 android:padding="@dimen/_15sdp"
                 android:text="@string/cal_pin_text"
                 android:textColor="@color/White"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="@dimen/_14sdp" />
 
             <HorizontalScrollView
                 android:id="@+id/display_hsv"

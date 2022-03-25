@@ -71,7 +71,7 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <com.calculator.vaultlocker.securitylocks.ConfirmLockPatternView
+        <calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.securitylocks.ConfirmLockPatternView
             android:id="@+id/pattern_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

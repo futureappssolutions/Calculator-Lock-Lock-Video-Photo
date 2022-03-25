@@ -91,6 +91,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/album_import_ListView"
                 android:layout_width="match_parent"
+
                 android:layout_height="wrap_content"/>
 
             <GridView
@@ -118,7 +119,7 @@
             android:id="@+id/btnImport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+           android:layout_above="@+id/ll_banner"
             android:layout_centerInParent="true"
             android:layout_marginBottom="@dimen/_8sdp"
             android:backgroundTint="@color/app_color"
@@ -132,5 +133,13 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/_15ssp" />
+
+        <LinearLayout
+            android:id="@+id/ll_banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical" />
+
     </RelativeLayout>
 </LinearLayout>

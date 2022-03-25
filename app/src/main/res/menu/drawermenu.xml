@@ -15,15 +15,6 @@
             android:title="Tell Friends"
             android:visible="true" />
         <item
-            android:id="@+id/nav_FeedBack"
-            android:icon="@drawable/menufeedback"
-            android:title="FeedBack"
-            android:visible="true" />
-        <item
-            android:id="@+id/nav_Privacy"
-            android:icon="@drawable/menuprivacy_policy"
-            android:title="Privacy Policy" />
-        <item
             android:id="@+id/nav_Rate"
             android:icon="@drawable/menurate_us"
             android:title="Rate Us"
@@ -33,9 +24,5 @@
             android:icon="@drawable/menushare"
             android:title="Share"
             android:visible="false" />
-        <item
-            android:id="@+id/nav_About"
-            android:icon="@drawable/menuabout"
-            android:title="About" />
     </group>
 </menu>

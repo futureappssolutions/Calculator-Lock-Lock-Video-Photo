@@ -29,6 +29,7 @@
             android:id="@+id/AlbumsGalleryGrid"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@+id/ll_banner"
             android:columnWidth="0dp"
             android:listSelector="@android:color/transparent"
             android:numColumns="2"
@@ -55,8 +56,8 @@
             android:id="@+id/btn_Add_Album"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/ll_banner"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
@@ -67,6 +68,14 @@
             app:fabSize="auto"
             app:fab_elevation="@dimen/_2sdp"
             app:srcCompat="@drawable/icon_folder_new" />
+
+        <LinearLayout
+            android:id="@+id/ll_banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical" />
+
     </RelativeLayout>
 
     <LinearLayout
@@ -79,4 +88,6 @@
 
         <include layout="@layout/bottomsheet_import_edit_delete" />
     </LinearLayout>
+
+
 </RelativeLayout>

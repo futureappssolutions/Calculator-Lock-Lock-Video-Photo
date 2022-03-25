@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.calculator.vaultlocker">
+    package="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock">
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -47,11 +47,11 @@
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:hardwareAccelerated="true"
-        android:icon="@mipmap/ic_launcher_foreground"
+        android:icon="@drawable/app_logo"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:requestLegacyExternalStorage="true"
-        android:roundIcon="@mipmap/ic_launcher_foreground"
+        android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.CalculatorLockVideoPhoto"
         android:usesCleartextTraffic="true"
@@ -59,18 +59,14 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />
-
-        <meta-data
-            android:name="applovin.sdk.key"
-            android:value="TciuTRecze8TdoQOCTmS6GmCcq0HvwyOq4Ouk36w6gJGPza8XenJg8I2PTUZhnyfezBfTwArn-hDwFWWEGwcyp" />
+            android:value="ca-app-pub-6447655601926357~4559249424" />
 
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.LoginActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.LoginActivity"
             android:clearTaskOnLaunch="true"
             android:finishOnCloseSystemDialogs="true"
             android:finishOnTaskLaunch="true"
@@ -104,7 +100,7 @@
         </activity>
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.ActivityMain"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.ActivityMain"
             android:clearTaskOnLaunch="true"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
@@ -114,143 +110,143 @@
             android:theme="@style/Theme.CalculatorLockVideoPhoto" />
 
         <activity
-            android:name="com.calculator.vaultlocker.securitylocks.SetPasswordActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.securitylocks.SetPasswordActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:theme="@style/Theme.CalculatorLockVideoPhoto" />
 
         <activity
-            android:name="com.calculator.vaultlocker.securitylocks.SetPatternActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.securitylocks.SetPatternActivity"
             android:excludeFromRecents="true"
             android:screenOrientation="locked"
             android:theme="@style/Theme.CalculatorLockVideoPhoto" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.SettingActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.SettingActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:theme="@style/Theme.CalculatorLockVideoPhoto" />
 
         <activity
-            android:name="com.calculator.vaultlocker.securitylocks.ConfirmPasswordPinActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.securitylocks.ConfirmPasswordPinActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true" />
 
         <activity
-            android:name="com.calculator.vaultlocker.securitylocks.ConfirmPatternActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.securitylocks.ConfirmPatternActivity"
             android:excludeFromRecents="true"
             android:screenOrientation="locked"
             android:theme="@style/Theme.CalculatorLockVideoPhoto" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.RecoveryOfCredentialsActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.RecoveryOfCredentialsActivity"
             android:excludeFromRecents="true"
             android:screenOrientation="locked" />
 
         <activity
-            android:name="com.calculator.vaultlocker.panicswitch.PanicSwitchActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.panicswitch.PanicSwitchActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.WalletEntriesActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.WalletEntriesActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.WalletEntryActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.WalletEntryActivity"
             android:screenOrientation="locked"
             android:windowSoftInputMode="adjustResize" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.WalletCategoriesActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.WalletCategoriesActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:label="@string/lblFeature7" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.NotesFilesActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.NotesFilesActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.MyNoteActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.MyNoteActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.NotesFoldersActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.NotesFoldersActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:label="@string/lblFeature6" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.AudioPlayListActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.AudioPlayListActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/Theme.CalculatorLockVideoPhoto" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.HackAttemptActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.HackAttemptActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.HackAttemptDetailActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.HackAttemptDetailActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.PhotosAlbumActivty"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.PhotosAlbumActivty"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:label="@string/lblFeature1"
             android:theme="@style/Theme.CalculatorLockVideoPhoto" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.ImportAlbumsGalleryPhotoActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.ImportAlbumsGalleryPhotoActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:theme="@style/Theme.CalculatorLockVideoPhoto" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.Photos_Gallery_Actitvity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.Photos_Gallery_Actitvity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:theme="@style/Theme.CalculatorLockVideoPhoto" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.AudioActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.AudioActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:theme="@style/Theme.CalculatorLockVideoPhoto" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.NewFullScreenViewActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.NewFullScreenViewActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:theme="@style/Theme.CalculatorLockVideoPhoto" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.VideosAlbumActivty"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.VideosAlbumActivty"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:label="@string/lblFeature2"
             android:theme="@style/Theme.CalculatorLockVideoPhoto" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.ImportAlbumsGalleryVideoActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.ImportAlbumsGalleryVideoActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:theme="@style/Theme.CalculatorLockVideoPhoto" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.Videos_Gallery_Actitvity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.Videos_Gallery_Actitvity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:theme="@style/Theme.CalculatorLockVideoPhoto" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.DocumentsFolderActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.DocumentsFolderActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -265,48 +261,48 @@
         </activity>
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.DocumentsActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.DocumentsActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:theme="@style/Theme.CalculatorLockVideoPhoto" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.DocumentsImportActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.DocumentsImportActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:theme="@style/Theme.CalculatorLockVideoPhoto" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.DataRecoveryActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.DataRecoveryActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:theme="@style/Theme.CalculatorLockVideoPhoto" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.ToDoActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.ToDoActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:label="@string/lblFeature10" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.ViewToDoActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.ViewToDoActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.AddToDoActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.AddToDoActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.GalleryActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.GalleryActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:label="@string/lblFeature3" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.calculator.vaultlocker"
+            android:authorities="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -315,25 +311,25 @@
         </provider>
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.CalculatorPinSetting"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.CalculatorPinSetting"
             android:screenOrientation="locked" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.MyCalculatorActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.MyCalculatorActivity"
             android:screenOrientation="locked"
             android:theme="@style/Theme.CalculatorLockVideoPhoto" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.AudiosImportActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.AudiosImportActivity"
             android:configChanges="orientation|screenSize" />
 
         <activity
-            android:name="com.calculator.vaultlocker.securitylocks.SecurityLocksActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.securitylocks.SecurityLocksActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true" />
 
         <activity
-            android:name="com.calculator.vaultlocker.Activity.AudioPlayerActivity"
+            android:name="calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.AudioPlayerActivity"
             android:clearTaskOnLaunch="true"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"

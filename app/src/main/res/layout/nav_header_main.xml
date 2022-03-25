@@ -18,5 +18,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@drawable/appicon" />
+        app:srcCompat="@drawable/app_logo" />
 </LinearLayout>

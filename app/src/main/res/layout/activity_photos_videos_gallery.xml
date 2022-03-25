@@ -25,7 +25,8 @@
         <LinearLayout
             android:id="@+id/ll_photo_video_grid"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_above="@+id/ll_banner">
 
             <GridView
                 android:id="@+id/customGalleryGrid"
@@ -34,7 +35,7 @@
                 android:gravity="center"
                 android:listSelector="@android:color/transparent"
                 android:numColumns="3"
-                android:scrollbars="none"/>
+                android:scrollbars="none" />
         </LinearLayout>
 
         <LinearLayout
@@ -71,9 +72,12 @@
             android:id="@+id/fabMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/ll_banner"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             app:fab_addButtonColorNormal="@color/app_color"
             app:fab_addButtonColorPressed="@color/white"
             app:fab_addButtonPlusIconColor="@color/white"
@@ -103,6 +107,13 @@
                 app:fab_size="mini"
                 app:fab_title="Gallery" />
         </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+        <LinearLayout
+            android:id="@+id/ll_banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical" />
 
         <LinearLayout
             android:id="@+id/ll_EditPhotos"

@@ -21,6 +21,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/ll_banner"
         android:layout_below="@+id/ll_anchor">
 
         <LinearLayout
@@ -97,6 +98,13 @@
                 app:fab_title="Phone" />
         </com.getbase.floatingactionbutton.FloatingActionsMenu>
     </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" />
 
     <LinearLayout
         android:id="@+id/ll_EditAlbum"

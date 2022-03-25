@@ -85,7 +85,7 @@
             android:background="#33aac0ff"
             android:fillViewport="true">
 
-            <com.calculator.vaultlocker.notes.LinedEditText
+            <calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.notes.LinedEditText
                 android:id="@+id/et_NoteContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

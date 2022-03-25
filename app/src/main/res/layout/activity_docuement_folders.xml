@@ -24,6 +24,7 @@
             android:layout_height="match_parent"
             android:listSelector="@android:color/transparent"
             android:numColumns="2"
+            android:layout_above="@+id/ll_banner"
             android:scrollbars="none"
             android:stretchMode="columnWidth" />
 
@@ -39,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
+            android:layout_above="@+id/ll_banner"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:contentDescription="@string/app_name"
@@ -47,6 +48,14 @@
             app:backgroundTint="@color/app_color"
             app:srcCompat="@drawable/icon_folder_new"
             tools:ignore="UsingOnClickInXml" />
+
+        <LinearLayout
+            android:id="@+id/ll_banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical" />
+
     </RelativeLayout>
 
     <LinearLayout

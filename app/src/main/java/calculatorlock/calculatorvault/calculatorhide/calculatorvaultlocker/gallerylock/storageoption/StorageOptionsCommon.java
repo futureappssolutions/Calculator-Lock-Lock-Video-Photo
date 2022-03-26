@@ -12,7 +12,7 @@ public class StorageOptionsCommon {
     public static String STORAGEPATH_2 = "";
     public static String VIDEOS_DEFAULT_ALBUM = "My Videos";
     public static String WALLET_ENTRY_FILE_EXTENSION = ".dat";
-    public static String STORAGE = "Calculator Vault/";
+    public static String STORAGE = "Calculator_Vault/";
     public static String APP_PATHNAME = "nsvault/";
     public static String PHOTOS = STORAGE + APP_PATHNAME + "Photos/";
     public static String VIDEOS = STORAGE + APP_PATHNAME + "Videos/";

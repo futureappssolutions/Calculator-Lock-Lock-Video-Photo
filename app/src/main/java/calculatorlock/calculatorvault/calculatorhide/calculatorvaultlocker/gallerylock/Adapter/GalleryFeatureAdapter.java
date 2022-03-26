@@ -97,9 +97,9 @@ public class GalleryFeatureAdapter extends ArrayAdapter<GalleryEnt> {
         viewHolder.iv_tick.setTag(i);
 
         if (listItems.get(i).get_isVideo()) {
-            Common.imageLoader.displayImage("file:///" + listItems.get(i).get_thumbnail_video_location(), viewHolder.imageview, options);
+            Common.imageLoader.displayImage("file:///" + listItems.get(i).get_thumbnail_video_location(), viewHolder.imageview);
         } else {
-            Common.imageLoader.displayImage("file:///" + listItems.get(i).get_folderLockgalleryfileLocation(), viewHolder.imageview, options);
+            Common.imageLoader.displayImage("file:///" + listItems.get(i).get_folderLockgalleryfileLocation(), viewHolder.imageview);
         }
 
         if (listItems.get(i).get_isCheck()) {

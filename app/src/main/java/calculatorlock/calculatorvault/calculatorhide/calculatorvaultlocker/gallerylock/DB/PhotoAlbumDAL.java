@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity.PhotosAlbumActivty;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Model.PhotoAlbum;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.securitylocks.SecurityLocksCommon;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.utilities.Utilities;
@@ -51,6 +52,31 @@ public class PhotoAlbumDAL {
         photoDAL.OpenRead();
         String str = "SELECT * FROM tbl_photo_albums Where IsFakeAccount = " + SecurityLocksCommon.IsFakeAccount + " ORDER BY _id";
 
+        Cursor rawQuery = this.database.rawQuery(str, null);
+        while (rawQuery.moveToNext()) {
+            PhotoAlbum photoAlbum = new PhotoAlbum();
+            photoAlbum.setId(rawQuery.getInt(0));
+            photoAlbum.setAlbumName(rawQuery.getString(1));
+            photoAlbum.setAlbumLocation(rawQuery.getString(2));
+            photoAlbum.set_modifiedDateTime(rawQuery.getString(6));
+            photoAlbum.setPhotoCount(photoDAL.GetPhotoCountByAlbumId(rawQuery.getInt(0)));
+            arrayList.add(photoAlbum);
+        }
+        rawQuery.close();
+        photoDAL.close();
+        return arrayList;
+    }
+
+    public List<PhotoAlbum> GetAlbums(int i) {
+        ArrayList arrayList = new ArrayList();
+        PhotoDAL photoDAL = new PhotoDAL(this.con);
+        photoDAL.OpenRead();
+        String str = "SELECT * FROM tbl_photo_albums Where IsFakeAccount = " + SecurityLocksCommon.IsFakeAccount + " ORDER BY _id";
+        if (PhotosAlbumActivty.SortBy.Time.ordinal() == i) {
+            str = "SELECT * FROM tbl_photo_albums Where IsFakeAccount = " + SecurityLocksCommon.IsFakeAccount + " ORDER BY ModifiedDateTime DESC";
+        } else if (PhotosAlbumActivty.SortBy.Name.ordinal() == i) {
+            str = "SELECT * FROM tbl_photo_albums Where IsFakeAccount = " + SecurityLocksCommon.IsFakeAccount + " ORDER BY album_name COLLATE NOCASE ASC";
+        }
         Cursor rawQuery = this.database.rawQuery(str, null);
         while (rawQuery.moveToNext()) {
             PhotoAlbum photoAlbum = new PhotoAlbum();

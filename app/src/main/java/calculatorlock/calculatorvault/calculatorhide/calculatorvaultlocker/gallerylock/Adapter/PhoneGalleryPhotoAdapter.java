@@ -2,6 +2,8 @@ package calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gall
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +15,11 @@ import android.widget.RelativeLayout;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Model.Photo;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.R;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.utilities.Common;
+
+import com.bumptech.glide.Glide;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
+import java.io.File;
 import java.util.List;
 
 public class PhoneGalleryPhotoAdapter extends ArrayAdapter<Photo> {
@@ -22,7 +27,7 @@ public class PhoneGalleryPhotoAdapter extends ArrayAdapter<Photo> {
     public Context con;
     public List<Photo> listItems;
     public LayoutInflater layoutInflater;
-    public DisplayImageOptions options = new DisplayImageOptions.Builder().showImageOnLoading(R.drawable.ic_photo_empty_icon).showImageForEmptyUri(R.drawable.ic_photo_empty_icon).showImageOnFail(R.drawable.ic_photo_empty_icon).cacheInMemory(false).cacheOnDisk(true).considerExifParams(true).bitmapConfig(Bitmap.Config.RGB_565).build();
+    public DisplayImageOptions options;
 
     public PhoneGalleryPhotoAdapter(Context context, int i, List<Photo> list, boolean z) {
         super(context, i, list);
@@ -30,6 +35,8 @@ public class PhoneGalleryPhotoAdapter extends ArrayAdapter<Photo> {
         this.listItems = list;
         this.isEdit = z;
         this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.options = new DisplayImageOptions.Builder().showImageOnLoading(R.drawable.ic_photo_empty_icon).showImageForEmptyUri(R.drawable.ic_photo_empty_icon).showImageOnFail(R.drawable.ic_photo_empty_icon).cacheInMemory(false).cacheOnDisk(true).considerExifParams(true).bitmapConfig(Bitmap.Config.RGB_565).build();
+
     }
 
     @Override
@@ -86,7 +93,22 @@ public class PhoneGalleryPhotoAdapter extends ArrayAdapter<Photo> {
         viewHolder.imageview.setTag(i);
         viewHolder.iv_tick.setTag(i);
 
-        Common.imageLoader.displayImage("file:///" + listItems.get(i).getFolderLockPhotoLocation(), viewHolder.imageview, options);
+    //    Common.imageLoader.displayImage("file:///" + listItems.get(i).getFolderLockPhotoLocation(), viewHolder.imageview);
+
+        File imgFile = new File("file://" + listItems.get(i).getFolderLockPhotoLocation());
+
+        if(imgFile.exists()){
+
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+
+           // ImageView myImage = (ImageView) findViewById(R.id.imageviewTest);
+
+            viewHolder.imageview.setImageBitmap(myBitmap);
+
+        }
+
+        Log.e("file","file://" + listItems.get(i).getFolderLockPhotoLocation());
+      //          Glide.with(getContext()).load("file://" + listItems.get(i).getFolderLockPhotoLocation()).into(viewHolder.imageview);
 
         if (listItems.get(i).GetFileCheck()) {
             viewHolder.ll_custom_gallery.setBackgroundResource(R.drawable.photo_grid_item_click);

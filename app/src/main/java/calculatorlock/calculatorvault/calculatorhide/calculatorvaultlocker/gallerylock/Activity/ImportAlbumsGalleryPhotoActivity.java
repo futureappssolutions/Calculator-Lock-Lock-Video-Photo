@@ -369,17 +369,12 @@ public class ImportAlbumsGalleryPhotoActivity extends BaseActivity implements On
             new Thread() {
                 @Override
                 public void run() {
-                    try {
+
                         ImportPhotos();
                         Message message = new Message();
                         message.what = 3;
                         handle.sendMessage(message);
                         Common.IsWorkInProgress = false;
-                    } catch (Exception unused) {
-                        Message message2 = new Message();
-                        message2.what = 3;
-                        handle.sendMessage(message2);
-                    }
                 }
             }.start();
             return;
@@ -387,6 +382,7 @@ public class ImportAlbumsGalleryPhotoActivity extends BaseActivity implements On
         PhotoAlbumDAL photoAlbumDAL = new PhotoAlbumDAL(ImportAlbumsGalleryPhotoActivity.this);
         photoAlbumDAL.OpenRead();
         photoAlbumDAL.close();
+
     }
 
     public void ImportPhotos() {
@@ -409,9 +405,7 @@ public class ImportAlbumsGalleryPhotoActivity extends BaseActivity implements On
                         int i3 = 1;
                         while (i3 < 100) {
                             folderName = file.getName() + "(" + i3 + ")";
-                            String sb = StorageOptionsCommon.STORAGEPATH +
-                                    StorageOptionsCommon.PHOTOS +
-                                    folderName;
+                            String sb = StorageOptionsCommon.STORAGEPATH + StorageOptionsCommon.PHOTOS + folderName;
                             File file3 = new File(sb);
                             if (!file3.exists()) {
                                 i3 = 100;

@@ -16,17 +16,18 @@ import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.galle
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.R;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.utilities.Common;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 
-public class PhotosAlbumsAdapter extends ArrayAdapter<PhotoAlbum> {
+public class PhotosAlbumsAdapter extends ArrayAdapter {
     public boolean isEdit;
     public int focusedPosition;
     public Context con;
     public LayoutInflater layoutInflater;
     public ArrayList<PhotoAlbum> list;
     public Resources res;
-    public DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true).considerExifParams(true).bitmapConfig(Bitmap.Config.RGB_565).build();
+    public DisplayImageOptions options ;
 
     public PhotosAlbumsAdapter(Context context, int i, ArrayList<PhotoAlbum> arrayList, int i2, boolean z) {
         super(context, i, arrayList);
@@ -37,6 +38,8 @@ public class PhotosAlbumsAdapter extends ArrayAdapter<PhotoAlbum> {
         this.focusedPosition = i2;
         this.isEdit = z;
         this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true).considerExifParams(true).bitmapConfig(Bitmap.Config.RGB_565).build();
+
     }
 
     @SuppressLint({"SetTextI18n", "ViewHolder"})
@@ -71,10 +74,20 @@ public class PhotosAlbumsAdapter extends ArrayAdapter<PhotoAlbum> {
 
         thumbImage.setBackgroundResource(R.drawable.ic_photo_thumb_empty_icon);
 
-        if (list.get(i).getAlbumCoverLocation() != null) {
-            Common.imageLoader.displayImage("file:///" + list.get(i).getAlbumCoverLocation(), iv_album_thumbnil, options);
-            thumbImage.setVisibility(View.INVISIBLE);
+        if (this.list.get(i).getAlbumCoverLocation() != null) {
+            try {
+                ImageLoader imageLoader = Common.imageLoader;
+                imageLoader.displayImage("file:///" + this.list.get(i).getAlbumCoverLocation().toString(), iv_album_thumbnil, this.options);
+            } catch (Exception unused) {
+            }
+            iv_album_thumbnil.setVisibility(4);
         }
+
+
+//        if (list.get(i).getAlbumCoverLocation() != null) {
+//            Common.imageLoader.displayImage("file:///" + list.get(i).getAlbumCoverLocation(), iv_album_thumbnil, options);
+//            thumbImage.setVisibility(View.VISIBLE);
+//        }
         return view2;
     }
 }

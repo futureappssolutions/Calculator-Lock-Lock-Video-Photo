@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.graphics.Typeface;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -13,12 +14,15 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -31,6 +35,8 @@ import androidx.core.content.FileProvider;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.GoogleAds;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.BuildConfig;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.R;
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.extra.AlbumFile;
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.extra.AlbumFolder;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.panicswitch.AccelerometerManager;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.panicswitch.PanicSwitchActivityMethods;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.panicswitch.PanicSwitchCommon;
@@ -54,7 +60,10 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 
 public class PhotosAlbumActivty extends BaseActivity {
@@ -75,6 +84,11 @@ public class PhotosAlbumActivty extends BaseActivity {
     private int position;
     private int AlbumId = 0;
     private boolean IsMoreDropdown = false;
+    Map<String, AlbumFolder> albumFolderMap = new HashMap();
+    private PhotoAlbumDAL photoAlbumDAL;
+    int _SortBy = 0;
+
+
 
     @Override
     public void onAccelerationChanged(float f, float f2, float f3) {
@@ -224,10 +238,11 @@ public class PhotosAlbumActivty extends BaseActivity {
         });
 
         ll_import_from_camera_btn.setOnClickListener(view -> {
-            Common.FolderId = photoAlbums.get(position).getId();
-            AlbumId = Common.FolderId;
-            albumName = photoAlbums.get(position).getAlbumName();
-            openCameraIntent();
+            Common.FolderId = PhotosAlbumActivty.this.photoAlbums.get(PhotosAlbumActivty.this.position).getId();
+            PhotosAlbumActivty.this.AlbumId = Common.FolderId;
+            PhotosAlbumActivty photosAlbumActivty = PhotosAlbumActivty.this;
+            photosAlbumActivty.albumName = photosAlbumActivty.photoAlbums.get(PhotosAlbumActivty.this.position).getAlbumName();
+            PhotosAlbumActivty.this.openCameraIntent();
         });
 
         int i = albumPosition;
@@ -257,6 +272,35 @@ public class PhotosAlbumActivty extends BaseActivity {
         }
     }
 
+    public void GetAlbumsFromDatabase(int i) {
+        isEditPhotoAlbum = false;
+        PhotoAlbumDAL photoAlbumDAL2 = new PhotoAlbumDAL(this);
+        this.photoAlbumDAL = photoAlbumDAL2;
+        try {
+            photoAlbumDAL2.OpenRead();
+            ArrayList<PhotoAlbum> arrayList = (ArrayList) this.photoAlbumDAL.GetAlbums(i);
+            this.photoAlbums = arrayList;
+            Iterator<PhotoAlbum> it = arrayList.iterator();
+            while (it.hasNext()) {
+                PhotoAlbum next = it.next();
+                next.setAlbumCoverLocation(GetCoverPhotoLocation(next.getId()));
+            }
+            PhotosAlbumsAdapter photosAlbumsAdapter = new PhotosAlbumsAdapter(this, 17367043, this.photoAlbums, 0, isEditPhotoAlbum);
+            this.adapter = photosAlbumsAdapter;
+            this.gridView.setAdapter((ListAdapter) photosAlbumsAdapter);
+            this.adapter.notifyDataSetChanged();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } catch (Throwable th) {
+            PhotoAlbumDAL photoAlbumDAL3 = this.photoAlbumDAL;
+            if (photoAlbumDAL3 != null) {
+                photoAlbumDAL3.close();
+            }
+            throw th;
+        }
+
+    }
+
     public void AddAlbumPopup() {
 
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
@@ -278,7 +322,7 @@ public class PhotosAlbumActivty extends BaseActivity {
                     File file = new File(StorageOptionsCommon.STORAGEPATH + "/" + StorageOptionsCommon.PHOTOS + albumName);
                     if (file.exists()) {
                         Toast.makeText(PhotosAlbumActivty.this, "\"" + albumName + "\" already exist", Toast.LENGTH_SHORT).show();
-                    } else  {
+                    } else {
                         file.mkdirs();
                         AlbumsGalleryPhotosMethods albumsGalleryPhotosMethods = new AlbumsGalleryPhotosMethods();
                         albumsGalleryPhotosMethods.AddAlbumToDatabase(PhotosAlbumActivty.this, albumName);
@@ -296,7 +340,7 @@ public class PhotosAlbumActivty extends BaseActivity {
                 File file = new File(StorageOptionsCommon.STORAGEPATH + "/" + StorageOptionsCommon.PHOTOS + albumName);
                 if (file.exists()) {
                     Toast.makeText(PhotosAlbumActivty.this, "\"" + albumName + "\" already exist", Toast.LENGTH_SHORT).show();
-                } else  {
+                } else {
                     file.mkdirs();
                     AlbumsGalleryPhotosMethods albumsGalleryPhotosMethods = new AlbumsGalleryPhotosMethods();
                     albumsGalleryPhotosMethods.AddAlbumToDatabase(PhotosAlbumActivty.this, albumName);
@@ -423,19 +467,19 @@ public class PhotosAlbumActivty extends BaseActivity {
     public void onActivityResult(int i, int i2, Intent intent) {
         super.onActivityResult(i, i2, intent);
         SecurityLocksCommon.IsAppDeactive = true;
-        String str;
         if (i == RESULT_LOAD_CAMERA && i2 == -1 && cacheDir != null) {
-
+            String str=new String();
             try {
                 str = Utilities.NSHideFile(this, cacheDir, new File(StorageOptionsCommon.STORAGEPATH + StorageOptionsCommon.PHOTOS + albumName));
                 Utilities.NSEncryption(new File(str));
-                if (!str.equals("")) {
-                    new AlbumsGalleryPhotosMethods().AddPhotoToDatabase(this, Common.FolderId, cacheDir.getName(), str, cacheDir.getAbsolutePath());
-                    Toast.makeText(this, R.string.toast_saved, Toast.LENGTH_SHORT).show();
-                    GetAlbumsFromDatabase();
-                }
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+            if (!str.equals("")) {
+                new AlbumsGalleryPhotosMethods().AddPhotoToDatabase(this, Common.FolderId, cacheDir.getName(), str, cacheDir.getAbsolutePath());
+                Toast.makeText(this, R.string.toast_saved, Toast.LENGTH_SHORT).show();
+                // GetAlbumsFromDatabase();
+                GetAlbumsFromDatabase(this._SortBy);
             }
         }
     }
@@ -530,6 +574,7 @@ public class PhotosAlbumActivty extends BaseActivity {
         if (intent.resolveActivity(getApplication().getPackageManager()) != null) {
             try {
                 cacheDir = createImageFile();
+                Log.e("photoFile", this.cacheDir + "");
                 intent.putExtra("output", FileProvider.getUriForFile(getApplicationContext(), BuildConfig.APPLICATION_ID, cacheDir));
                 SecurityLocksCommon.IsAppDeactive = false;
                 startActivityForResult(intent, RESULT_LOAD_CAMERA);

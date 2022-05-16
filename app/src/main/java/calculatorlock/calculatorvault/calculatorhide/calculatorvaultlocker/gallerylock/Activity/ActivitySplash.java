@@ -3,7 +3,6 @@ package calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gall
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
 import android.view.Window;
@@ -12,13 +11,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.RequestConfiguration;
+import com.facebook.ads.AdSettings;
 
-import java.util.Arrays;
-import java.util.List;
-
-import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.GoogleAds;
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.Advertisement;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.R;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.common.Preferences;
 
@@ -46,34 +41,14 @@ public class ActivitySplash extends AppCompatActivity {
 
         setStatusBar();
 
-
-
         Preferences.setRemove_ads_weekly("weekly_key");
         Preferences.setRemove_ads_monthly("monthly_key");
         Preferences.setRemove_ads_yearly("yearly_key");
 
+        AdSettings.setIntegrationErrorMode(AdSettings.IntegrationErrorMode.INTEGRATION_ERROR_CALLBACK_MODE);
+        Advertisement.preLoadAds(ActivitySplash.this);
 
-        try {
-            GoogleAds.allcount60 = new CountDownTimer(8 * 1000L, 1000) {
-                public void onTick(long millisUntilFinished) {
-                    GoogleAds.adsdisplay = false;
-                }
 
-                public void onFinish() {
-                    GoogleAds.adsdisplay = true;
-                }
-            };
-            GoogleAds.allcount60.start();
-        } catch (NumberFormatException ex) {
-            ex.printStackTrace();
-        }
-
-        GoogleAds.preLoadAds(ActivitySplash.this);
-
-        List<String> testDeviceIds = Arrays.asList("1D7507473BC06D8DADD1C3B000C803C6");
-        RequestConfiguration configuration =
-                new RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build();
-        MobileAds.setRequestConfiguration(configuration);
 
         new Handler().postDelayed(() -> {
             startActivity(new Intent(ActivitySplash.this, LoginActivity.class));

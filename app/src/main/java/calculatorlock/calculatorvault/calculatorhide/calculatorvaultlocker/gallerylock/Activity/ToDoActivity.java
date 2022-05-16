@@ -20,7 +20,7 @@ import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.GoogleAds;
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.Advertisement;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.R;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.common.Constants;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.panicswitch.AccelerometerListener;
@@ -64,7 +64,7 @@ public class ToDoActivity extends AppCompatActivity implements AccelerometerList
 
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        GoogleAds.showBannerAds(ToDoActivity.this, ll_banner);
+        Advertisement.showBanner(ToDoActivity.this, ll_banner);
 
         FloatingActionButton fab_AddToDoTask = findViewById(R.id.fab_AddToDoTask);
         recList = findViewById(R.id.toDoCardList);

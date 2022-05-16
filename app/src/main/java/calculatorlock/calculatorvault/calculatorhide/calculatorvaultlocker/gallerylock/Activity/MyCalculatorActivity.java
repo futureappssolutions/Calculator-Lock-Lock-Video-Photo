@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -22,7 +21,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.GoogleAds;
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.Advertisement;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.R;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.calculator.Calculator;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.securitylocks.SecurityLocksCommon;
@@ -69,7 +68,7 @@ public class MyCalculatorActivity extends AppCompatActivity {
         }
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        GoogleAds.showBannerAds(MyCalculatorActivity.this, ll_banner);
+        Advertisement.showBanner(MyCalculatorActivity.this, ll_banner);
 
         securityCredentialsSharedPreferences = SecurityLocksSharedPreferences.GetObject(this);
         SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());

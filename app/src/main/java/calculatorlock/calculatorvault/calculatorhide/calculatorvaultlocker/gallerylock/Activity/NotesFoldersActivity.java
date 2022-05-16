@@ -28,7 +28,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuItemCompat;
 
-import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.GoogleAds;
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.Advertisement;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.R;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.common.Constants;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.notes.NotesCommon;
@@ -89,7 +89,7 @@ public class NotesFoldersActivity extends AppCompatActivity implements Accelerom
         LinearLayout ll_delete_btn = findViewById(R.id.ll_delete_btn);
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        GoogleAds.showBannerAds(NotesFoldersActivity.this, ll_banner);
+        Advertisement.showBanner(NotesFoldersActivity.this, ll_banner);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
@@ -579,43 +579,21 @@ public class NotesFoldersActivity extends AppCompatActivity implements Accelerom
 
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long j) {
-            if (GoogleAds.adsdisplay) {
-                GoogleAds.showFullAds(NotesFoldersActivity.this, () -> {
-                    GoogleAds.allcount60.start();
-                    if (isEdittable) {
-                        isEdittable = false;
-                        ll_NotesFolderEdit.setVisibility(View.GONE);
-                        notesFolderadapter.setFocusedPosition(i);
-                        notesFolderadapter.setIsEdit(isEdittable);
-                        gv_NotesFolder.setAdapter(notesFolderadapter);
-                        notesFolderadapter.notifyDataSetChanged();
-                        return;
-                    }
-                    SecurityLocksCommon.IsAppDeactive = false;
-                    ll_NotesFolderEdit.setVisibility(View.GONE);
-                    NotesCommon.CurrentNotesFolder = notesFolderPojoList.get(i).getNotesFolderName();
-                    NotesCommon.CurrentNotesFolderId = notesFolderPojoList.get(i).getNotesFolderId();
-                    startActivity(new Intent(NotesFoldersActivity.this, NotesFilesActivity.class));
-                    finish();
-                });
-            } else {
-                if (isEdittable) {
-                    isEdittable = false;
-                    ll_NotesFolderEdit.setVisibility(View.GONE);
-                    notesFolderadapter.setFocusedPosition(i);
-                    notesFolderadapter.setIsEdit(isEdittable);
-                    gv_NotesFolder.setAdapter(notesFolderadapter);
-                    notesFolderadapter.notifyDataSetChanged();
-                    return;
-                }
-                SecurityLocksCommon.IsAppDeactive = false;
+            if (isEdittable) {
+                isEdittable = false;
                 ll_NotesFolderEdit.setVisibility(View.GONE);
-                NotesCommon.CurrentNotesFolder = notesFolderPojoList.get(i).getNotesFolderName();
-                NotesCommon.CurrentNotesFolderId = notesFolderPojoList.get(i).getNotesFolderId();
-                startActivity(new Intent(NotesFoldersActivity.this, NotesFilesActivity.class));
-                finish();
+                notesFolderadapter.setFocusedPosition(i);
+                notesFolderadapter.setIsEdit(isEdittable);
+                gv_NotesFolder.setAdapter(notesFolderadapter);
+                notesFolderadapter.notifyDataSetChanged();
+                return;
             }
-
+            SecurityLocksCommon.IsAppDeactive = false;
+            ll_NotesFolderEdit.setVisibility(View.GONE);
+            NotesCommon.CurrentNotesFolder = notesFolderPojoList.get(i).getNotesFolderName();
+            NotesCommon.CurrentNotesFolderId = notesFolderPojoList.get(i).getNotesFolderId();
+            startActivity(new Intent(NotesFoldersActivity.this, NotesFilesActivity.class));
+            finish();
         }
     }
 

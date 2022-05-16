@@ -1,7 +1,6 @@
 package calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -33,7 +32,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuItemCompat;
 
-import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.GoogleAds;
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.Advertisement;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.R;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.common.Constants;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Adapter.AppDocumentsAdapter;
@@ -112,7 +111,7 @@ public class DocumentsFolderActivity extends AppCompatActivity implements Accele
 
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        GoogleAds.showBannerAds(DocumentsFolderActivity.this, ll_banner);
+        Advertisement.showBanner(DocumentsFolderActivity.this, ll_banner);
 
         gridView = findViewById(R.id.AlbumsGalleryGrid);
         Progress = findViewById(R.id.prbLoading);
@@ -153,69 +152,34 @@ public class DocumentsFolderActivity extends AppCompatActivity implements Accele
         });
 
         gridView.setOnItemClickListener((adapterView, view, i, j) -> {
-            if (GoogleAds.adsdisplay) {
-                GoogleAds.showFullAds(DocumentsFolderActivity.this, () -> {
-                    GoogleAds.allcount60.start();
-                    DocumentsFolderActivity.albumPosition = gridView.getFirstVisiblePosition();
-                    if (DocumentsFolderActivity.isEdit) {
-                        DocumentsFolderActivity.isEdit = false;
-                        ll_EditAlbum.setVisibility(View.GONE);
-                        adapter = new DocumentsFolderAdapter(DocumentsFolderActivity.this, 17367043, documentFolders, i, DocumentsFolderActivity.isEdit);
-                        gridView.setAdapter(adapter);
-                        adapter.notifyDataSetChanged();
-                    } else if (isSearch) {
-                        isSearch = false;
-                        int id = documentList.get(i).getId();
-                        DocumentDAL documentDAL = new DocumentDAL(DocumentsFolderActivity.this);
-                        documentDAL.OpenRead();
-                        String folderLockDocumentLocation = documentDAL.GetDocumentById(Integer.toString(id)).getFolderLockDocumentLocation();
-                        documentDAL.close();
-                        String FileName = Utilities.FileName(folderLockDocumentLocation);
-                        if (FileName.contains("#")) {
-                            FileName = Utilities.ChangeFileExtentionToOrignal(FileName);
-                        }
-                        File file = new File(folderLockDocumentLocation);
-                        File file2 = new File(file.getParent() + "/" + FileName);
-                        file.renameTo(file2);
-                        CopyTempFile(file2.getAbsolutePath());
-                    } else {
-                        SecurityLocksCommon.IsAppDeactive = false;
-                        Common.FolderId = documentFolders.get(i).getId();
-                        startActivity(new Intent(DocumentsFolderActivity.this, DocumentsActivity.class));
-                        finish();
-                    }
-                });
-            } else {
-                DocumentsFolderActivity.albumPosition = gridView.getFirstVisiblePosition();
-                if (DocumentsFolderActivity.isEdit) {
-                    DocumentsFolderActivity.isEdit = false;
-                    ll_EditAlbum.setVisibility(View.GONE);
-                    adapter = new DocumentsFolderAdapter(DocumentsFolderActivity.this, 17367043, documentFolders, i, DocumentsFolderActivity.isEdit);
-                    gridView.setAdapter(adapter);
-                    adapter.notifyDataSetChanged();
-                } else if (isSearch) {
-                    isSearch = false;
-                    int id = documentList.get(i).getId();
-                    DocumentDAL documentDAL = new DocumentDAL(DocumentsFolderActivity.this);
-                    documentDAL.OpenRead();
-                    String folderLockDocumentLocation = documentDAL.GetDocumentById(Integer.toString(id)).getFolderLockDocumentLocation();
-                    documentDAL.close();
-                    String FileName = Utilities.FileName(folderLockDocumentLocation);
-                    if (FileName.contains("#")) {
-                        FileName = Utilities.ChangeFileExtentionToOrignal(FileName);
-                    }
-                    File file = new File(folderLockDocumentLocation);
-                    File file2 = new File(file.getParent() + "/" + FileName);
-                    file.renameTo(file2);
-                    CopyTempFile(file2.getAbsolutePath());
-                } else {
-                    SecurityLocksCommon.IsAppDeactive = false;
-                    Common.FolderId = documentFolders.get(i).getId();
-                    startActivity(new Intent(DocumentsFolderActivity.this, DocumentsActivity.class));
-                    finish();
+            DocumentsFolderActivity.albumPosition = gridView.getFirstVisiblePosition();
+            if (DocumentsFolderActivity.isEdit) {
+                DocumentsFolderActivity.isEdit = false;
+                ll_EditAlbum.setVisibility(View.GONE);
+                adapter = new DocumentsFolderAdapter(DocumentsFolderActivity.this, 17367043, documentFolders, i, DocumentsFolderActivity.isEdit);
+                gridView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            } else if (isSearch) {
+                isSearch = false;
+                int id = documentList.get(i).getId();
+                DocumentDAL documentDAL = new DocumentDAL(DocumentsFolderActivity.this);
+                documentDAL.OpenRead();
+                String folderLockDocumentLocation = documentDAL.GetDocumentById(Integer.toString(id)).getFolderLockDocumentLocation();
+                documentDAL.close();
+                String FileName = Utilities.FileName(folderLockDocumentLocation);
+                if (FileName.contains("#")) {
+                    FileName = Utilities.ChangeFileExtentionToOrignal(FileName);
                 }
+                File file = new File(folderLockDocumentLocation);
+                File file2 = new File(file.getParent() + "/" + FileName);
+                file.renameTo(file2);
+                CopyTempFile(file2.getAbsolutePath());
+            } else {
+                SecurityLocksCommon.IsAppDeactive = false;
+                Common.FolderId = documentFolders.get(i).getId();
+                startActivity(new Intent(DocumentsFolderActivity.this, DocumentsActivity.class));
+                finish();
             }
-
         });
 
         gridView.setOnItemLongClickListener((adapterView, view, i, j) -> {
@@ -321,8 +285,6 @@ public class DocumentsFolderActivity extends AppCompatActivity implements Accele
     }
 
     public void AddAlbumPopup() {
-
-
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         View inflate = LayoutInflater.from(this).inflate(R.layout.album_add_edit_popup, null);
         bottomSheetDialog.setContentView(inflate);
@@ -334,46 +296,22 @@ public class DocumentsFolderActivity extends AppCompatActivity implements Accele
         editText.setHint(R.string.lbl_Document_folder_Create_Folder_enter);
 
         inflate.findViewById(R.id.ll_Ok).setOnClickListener(view -> {
-
-            if (GoogleAds.adsdisplay) {
-                GoogleAds.showFullAds(DocumentsFolderActivity.this, () -> {
-                    GoogleAds.allcount60.start();
-                    if (editText.getEditableText().toString().length() <= 0 || editText.getEditableText().toString().trim().isEmpty()) {
-                        Toast.makeText(DocumentsFolderActivity.this, R.string.lbl_Document_folder_Create_Folder_please_enter, Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    folderName = editText.getEditableText().toString();
-                    File file = new File(StorageOptionsCommon.STORAGEPATH + "/" + StorageOptionsCommon.DOCUMENTS + folderName);
-                    if (file.exists()) {
-                        Toast.makeText(DocumentsFolderActivity.this, "\"" + folderName + "\" already exist", Toast.LENGTH_SHORT).show();
-                    } else {
-                        file.mkdirs();
-                        DocumentsFolderGalleryMethods documentsFolderGalleryMethods = new DocumentsFolderGalleryMethods();
-                        documentsFolderGalleryMethods.AddFolderToDatabase(DocumentsFolderActivity.this, folderName);
-                        Toast.makeText(DocumentsFolderActivity.this, R.string.lbl_Document_folder_Create_Album_Success, Toast.LENGTH_SHORT).show();
-                        GetFodlersFromDatabase(_SortBy);
-                        bottomSheetDialog.dismiss();
-                    }
-                });
-            } else {
-                if (editText.getEditableText().toString().length() <= 0 || editText.getEditableText().toString().trim().isEmpty()) {
-                    Toast.makeText(DocumentsFolderActivity.this, R.string.lbl_Document_folder_Create_Folder_please_enter, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                folderName = editText.getEditableText().toString();
-                File file = new File(StorageOptionsCommon.STORAGEPATH + "/" + StorageOptionsCommon.DOCUMENTS + folderName);
-                if (file.exists()) {
-                    Toast.makeText(DocumentsFolderActivity.this, "\"" + folderName + "\" already exist", Toast.LENGTH_SHORT).show();
-                } else {
-                    file.mkdirs();
-                    DocumentsFolderGalleryMethods documentsFolderGalleryMethods = new DocumentsFolderGalleryMethods();
-                    documentsFolderGalleryMethods.AddFolderToDatabase(DocumentsFolderActivity.this, folderName);
-                    Toast.makeText(DocumentsFolderActivity.this, R.string.lbl_Document_folder_Create_Album_Success, Toast.LENGTH_SHORT).show();
-                    GetFodlersFromDatabase(_SortBy);
-                    bottomSheetDialog.dismiss();
-                }
+            if (editText.getEditableText().toString().length() <= 0 || editText.getEditableText().toString().trim().isEmpty()) {
+                Toast.makeText(DocumentsFolderActivity.this, R.string.lbl_Document_folder_Create_Folder_please_enter, Toast.LENGTH_SHORT).show();
+                return;
             }
-
+            folderName = editText.getEditableText().toString();
+            File file = new File(StorageOptionsCommon.STORAGEPATH + "/" + StorageOptionsCommon.DOCUMENTS + folderName);
+            if (file.exists()) {
+                Toast.makeText(DocumentsFolderActivity.this, "\"" + folderName + "\" already exist", Toast.LENGTH_SHORT).show();
+            } else {
+                file.mkdirs();
+                DocumentsFolderGalleryMethods documentsFolderGalleryMethods = new DocumentsFolderGalleryMethods();
+                documentsFolderGalleryMethods.AddFolderToDatabase(DocumentsFolderActivity.this, folderName);
+                Toast.makeText(DocumentsFolderActivity.this, R.string.lbl_Document_folder_Create_Album_Success, Toast.LENGTH_SHORT).show();
+                GetFodlersFromDatabase(_SortBy);
+                bottomSheetDialog.dismiss();
+            }
         });
 
         inflate.findViewById(R.id.ll_Cancel).setOnClickListener(view -> bottomSheetDialog.dismiss());
@@ -381,8 +319,6 @@ public class DocumentsFolderActivity extends AppCompatActivity implements Accele
     }
 
     public void EditAlbumPopup(final int i, final String str, final String str2) {
-
-
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         View inflate = LayoutInflater.from(this).inflate(R.layout.album_add_edit_popup, null);
         bottomSheetDialog.setContentView(inflate);

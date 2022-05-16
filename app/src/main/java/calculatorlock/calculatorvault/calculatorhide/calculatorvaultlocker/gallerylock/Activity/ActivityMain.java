@@ -31,6 +31,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.facebook.ads.NativeAdLayout;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ import java.util.List;
 import java.util.Objects;
 
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Adapter.MainAdapter;
-import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.GoogleAds;
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.Advertisement;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.BuildConfig;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Model.FeatureActivityEnt;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.R;
@@ -84,8 +85,11 @@ public class ActivityMain extends AppCompatActivity implements AccelerometerList
         super.onCreate(bundle);
         setContentView(R.layout.activity_main);
 
-        FrameLayout fl_native = findViewById(R.id.fl_native);
-        GoogleAds.showNativeAds(ActivityMain.this, fl_native);
+
+        NativeAdLayout  fl_native = findViewById(R.id.fl_native);
+        Advertisement.shoNativeAds(ActivityMain.this,fl_native);
+
+
 
         invalidateOptionsMenu();
 
@@ -181,93 +185,76 @@ public class ActivityMain extends AppCompatActivity implements AccelerometerList
 
     private void IntergerActivty(int i) {
         if (i == 0) {
-            if (GoogleAds.adsdisplay) {
-                GoogleAds.showFullAds(ActivityMain.this, () -> {
-                    GoogleAds.allcount60.start();
-                    startActivity(new Intent(this, PhotosAlbumActivty.class));
+            Advertisement.getInstance((ActivityMain.this)).showFull(new Advertisement.MyCallback() {
+                @Override
+                public void callbackCall() {
+                    startActivity(new Intent(ActivityMain.this, PhotosAlbumActivty.class));
                     finish();
-                });
-            } else {
-                startActivity(new Intent(this, PhotosAlbumActivty.class));
-                finish();
-            }
+                }
+            });
         } else if (i == 1) {
-            if (GoogleAds.adsdisplay) {
-                GoogleAds.showFullAds(ActivityMain.this, () -> {
-                    GoogleAds.allcount60.start();
-                    startActivity(new Intent(this, VideosAlbumActivty.class));
+            Advertisement.getInstance((ActivityMain.this)).showFull(new Advertisement.MyCallback() {
+                @Override
+                public void callbackCall() {
+                    startActivity(new Intent(ActivityMain.this, VideosAlbumActivty.class));
                     finish();
-                });
-            } else {
-                startActivity(new Intent(this, VideosAlbumActivty.class));
-                finish();
-            }
+                }
+            });
+
         } else if (i == 2) {
-            if (GoogleAds.adsdisplay) {
-                GoogleAds.showFullAds(ActivityMain.this, () -> {
-                    GoogleAds.allcount60.start();
-                    startActivity(new Intent(this, GalleryActivity.class));
+            Advertisement.getInstance((ActivityMain.this)).showFull(new Advertisement.MyCallback() {
+                @Override
+                public void callbackCall() {
+                    startActivity(new Intent(ActivityMain.this, GalleryActivity.class));
                     finish();
-                });
-            } else {
-                startActivity(new Intent(this, GalleryActivity.class));
-                finish();
-            }
+                }
+            });
+
         } else if (i == 3) {
-            if (GoogleAds.adsdisplay) {
-                GoogleAds.showFullAds(ActivityMain.this, () -> {
-                    GoogleAds.allcount60.start();
-                    startActivity(new Intent(this, AudioPlayListActivity.class));
+            Advertisement.getInstance((ActivityMain.this)).showFull(new Advertisement.MyCallback() {
+                @Override
+                public void callbackCall() {
+                    startActivity(new Intent(ActivityMain.this, AudioPlayListActivity.class));
                     finish();
-                });
-            } else {
-                startActivity(new Intent(this, AudioPlayListActivity.class));
-                finish();
-            }
+                }
+            });
+
+
         } else if (i == 4) {
-            if (GoogleAds.adsdisplay) {
-                GoogleAds.showFullAds(ActivityMain.this, () -> {
-                    GoogleAds.allcount60.start();
-                    startActivity(new Intent(this, DocumentsFolderActivity.class));
+            Advertisement.getInstance((ActivityMain.this)).showFull(new Advertisement.MyCallback() {
+                @Override
+                public void callbackCall() {
+                    startActivity(new Intent(ActivityMain.this, DocumentsFolderActivity.class));
                     finish();
-                });
-            } else {
-                startActivity(new Intent(this, DocumentsFolderActivity.class));
-                finish();
-            }
+                }
+            });
+
         } else if (i == 5) {
-            if (GoogleAds.adsdisplay) {
-                GoogleAds.showFullAds(ActivityMain.this, () -> {
-                    GoogleAds.allcount60.start();
-                    startActivity(new Intent(this, WalletCategoriesActivity.class));
+            Advertisement.getInstance((ActivityMain.this)).showFull(new Advertisement.MyCallback() {
+                @Override
+                public void callbackCall() {
+                    startActivity(new Intent(ActivityMain.this, WalletCategoriesActivity.class));
                     finish();
-                });
-            } else {
-                startActivity(new Intent(this, WalletCategoriesActivity.class));
-                finish();
-            }
+                }
+            });
+
         } else if (i == 6) {
-            if (GoogleAds.adsdisplay) {
-                GoogleAds.showFullAds(ActivityMain.this, () -> {
-                    GoogleAds.allcount60.start();
-                    startActivity(new Intent(this, NotesFoldersActivity.class));
+            Advertisement.getInstance((ActivityMain.this)).showFull(new Advertisement.MyCallback() {
+                @Override
+                public void callbackCall() {
+                    startActivity(new Intent(ActivityMain.this, NotesFoldersActivity.class));
                     finish();
-                });
-            } else {
-                startActivity(new Intent(this, NotesFoldersActivity.class));
-                finish();
-            }
+                }
+            });
+
         } else if (i == 7) {
-            if (GoogleAds.adsdisplay) {
-                GoogleAds.showFullAds(ActivityMain.this, () -> {
-                    GoogleAds.allcount60.start();
-                    startActivity(new Intent(this, ToDoActivity.class));
+            Advertisement.getInstance((ActivityMain.this)).showFull(new Advertisement.MyCallback() {
+                @Override
+                public void callbackCall() {
+                    startActivity(new Intent(ActivityMain.this, ToDoActivity.class));
                     finish();
-                });
-            } else {
-                startActivity(new Intent(this, ToDoActivity.class));
-                finish();
-            }
+                }
+            });
         }
     }
 

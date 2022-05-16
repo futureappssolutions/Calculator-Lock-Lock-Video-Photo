@@ -1,7 +1,6 @@
 package calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -33,7 +32,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
-import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.GoogleAds;
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.Advertisement;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.R;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.panicswitch.AccelerometerManager;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.panicswitch.PanicSwitchActivityMethods;
@@ -102,7 +101,7 @@ public class VideosAlbumActivty extends BaseActivity {
         setContentView(R.layout.activity_photos_videos_albums);
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        GoogleAds.showBannerAds(VideosAlbumActivty.this, ll_banner);
+        Advertisement.showBanner(VideosAlbumActivty.this, ll_banner);
 
         gridView = findViewById(R.id.AlbumsGalleryGrid);
         Progress = findViewById(R.id.prbLoading);
@@ -151,9 +150,9 @@ public class VideosAlbumActivty extends BaseActivity {
         });
 
         gridView.setOnItemClickListener((adapterView, view, i, j) -> {
-            if (GoogleAds.adsdisplay) {
-                GoogleAds.showFullAds(VideosAlbumActivty.this, () -> {
-                    GoogleAds.allcount60.start();
+            Advertisement.getInstance((VideosAlbumActivty.this)).showFull(new Advertisement.MyCallback() {
+                @Override
+                public void callbackCall() {
                     VideosAlbumActivty.albumPosition = gridView.getFirstVisiblePosition();
                     if (VideosAlbumActivty.isEditMode) {
                         VideosAlbumActivty.isEditMode = false;
@@ -167,23 +166,8 @@ public class VideosAlbumActivty extends BaseActivity {
                     Common.FolderId = videoAlbum.get(i).getId();
                     startActivity(new Intent(VideosAlbumActivty.this, Videos_Gallery_Actitvity.class));
                     finish();
-                });
-            } else {
-                VideosAlbumActivty.albumPosition = gridView.getFirstVisiblePosition();
-                if (VideosAlbumActivty.isEditMode) {
-                    VideosAlbumActivty.isEditMode = false;
-                    ll_EditAlbum.setVisibility(View.GONE);
-                    adapter = new VideosAlbumsAdapter(VideosAlbumActivty.this, 17367043, videoAlbum, i, VideosAlbumActivty.isEditMode);
-                    gridView.setAdapter(adapter);
-                    adapter.notifyDataSetChanged();
-                    return;
                 }
-                SecurityLocksCommon.IsAppDeactive = false;
-                Common.FolderId = videoAlbum.get(i).getId();
-                startActivity(new Intent(VideosAlbumActivty.this, Videos_Gallery_Actitvity.class));
-                finish();
-            }
-
+            });
         });
 
         gridView.setOnItemLongClickListener((adapterView, view, i, j) -> {
@@ -303,9 +287,9 @@ public class VideosAlbumActivty extends BaseActivity {
         final EditText editText = inflate.findViewById(R.id.txt_AlbumName);
 
         inflate.findViewById(R.id.ll_Ok).setOnClickListener(view -> {
-            if (GoogleAds.adsdisplay) {
-                GoogleAds.showFullAds(VideosAlbumActivty.this, () -> {
-                    GoogleAds.allcount60.start();
+            Advertisement.getInstance((VideosAlbumActivty.this)).showFull(new Advertisement.MyCallback() {
+                @Override
+                public void callbackCall() {
                     if (editText.getEditableText().toString().length() <= 0 || editText.getEditableText().toString().trim().isEmpty()) {
                         Toast.makeText(VideosAlbumActivty.this, R.string.lbl_Photos_Album_Create_Album_please_enter, Toast.LENGTH_SHORT).show();
                         return;
@@ -322,26 +306,8 @@ public class VideosAlbumActivty extends BaseActivity {
                         GetAlbumsFromDatabase(_SortBy);
                         bottomSheetDialog.dismiss();
                     }
-                });
-            } else {
-                if (editText.getEditableText().toString().length() <= 0 || editText.getEditableText().toString().trim().isEmpty()) {
-                    Toast.makeText(VideosAlbumActivty.this, R.string.lbl_Photos_Album_Create_Album_please_enter, Toast.LENGTH_SHORT).show();
-                    return;
                 }
-                albumName = editText.getEditableText().toString();
-                File file = new File(StorageOptionsCommon.STORAGEPATH + "/" + StorageOptionsCommon.VIDEOS + albumName);
-                if (file.exists()) {
-                    Toast.makeText(VideosAlbumActivty.this, "\"" + albumName + "\" already exist", Toast.LENGTH_SHORT).show();
-                } else  {
-                    file.mkdirs();
-                    AlbumsGalleryVideosMethods albumsGalleryVideosMethods = new AlbumsGalleryVideosMethods();
-                    albumsGalleryVideosMethods.AddAlbumToDatabase(VideosAlbumActivty.this, albumName);
-                    Toast.makeText(VideosAlbumActivty.this, R.string.lbl_Photos_Album_Create_Album_Success, Toast.LENGTH_SHORT).show();
-                    GetAlbumsFromDatabase(_SortBy);
-                    bottomSheetDialog.dismiss();
-                }
-            }
-
+            });
         });
 
         inflate.findViewById(R.id.ll_Cancel).setOnClickListener(view -> bottomSheetDialog.dismiss());

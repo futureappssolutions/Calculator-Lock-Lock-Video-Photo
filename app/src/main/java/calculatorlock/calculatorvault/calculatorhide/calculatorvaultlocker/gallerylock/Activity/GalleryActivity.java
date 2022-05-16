@@ -41,7 +41,7 @@ import java.util.Collections;
 import java.util.List;
 
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Adapter.GalleryFeatureAdapter;
-import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.GoogleAds;
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.Advertisement;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.BuildConfig;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.DB.PhotoDAL;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.DB.VideoDAL;
@@ -166,7 +166,7 @@ public class GalleryActivity extends BaseActivity {
         SecurityLocksCommon.IsAppDeactive = true;
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        GoogleAds.showBannerAds(GalleryActivity.this, ll_banner);
+        Advertisement.showBanner(GalleryActivity.this, ll_banner);
 
         LinearLayout ll_background = findViewById(R.id.ll_background);
         LinearLayout ll_delete_btn = findViewById(R.id.ll_delete_btn);

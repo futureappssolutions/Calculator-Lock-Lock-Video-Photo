@@ -34,9 +34,10 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.GoogleAds;
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.Advertisement;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Model.ImportAlbumEnt;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.R;
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.XMLParser.DocumentsFolderGalleryMethods;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.common.Constants;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.DB.DocumentDAL;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Model.DocumentFolder;
@@ -164,7 +165,7 @@ public class DocumentsImportActivity extends Activity implements AccelerometerLi
 
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        GoogleAds.showBannerAds(DocumentsImportActivity.this, ll_banner);
+        Advertisement.showBanner(DocumentsImportActivity.this, ll_banner);
 
         SecurityLocksCommon.IsAppDeactive = true;
         Common.IsWorkInProgress = false;
@@ -206,14 +207,12 @@ public class DocumentsImportActivity extends Activity implements AccelerometerLi
         }
 
         btnImport.setOnClickListener(view -> {
-            if (GoogleAds.adsdisplay) {
-                GoogleAds.showFullAds(DocumentsImportActivity.this, () -> {
-                    GoogleAds.allcount60.start();
+            Advertisement.getInstance((DocumentsImportActivity.this)).showFull(new Advertisement.MyCallback() {
+                @Override
+                public void callbackCall() {
                     OnImportClick();
-                });
-            } else {
-                OnImportClick();
-            }
+                }
+            });
         });
 
 

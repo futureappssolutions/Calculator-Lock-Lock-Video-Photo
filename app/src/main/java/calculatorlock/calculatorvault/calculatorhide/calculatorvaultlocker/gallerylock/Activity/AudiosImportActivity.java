@@ -29,7 +29,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.GoogleAds;
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.Advertisement;
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.XMLParser.AudioPlaylistGalleryMethods;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.common.Flaes;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.R;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.DB.AudioDAL;
@@ -151,7 +152,7 @@ public class AudiosImportActivity extends BaseActivity implements OnItemClickLis
 
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        GoogleAds.showBannerAds(AudiosImportActivity.this, ll_banner);
+        Advertisement.showBanner(AudiosImportActivity.this, ll_banner);
 
         btnSelectAll = findViewById(R.id.btnSelectAll);
         album_import_ListView = findViewById(R.id.album_import_ListView);
@@ -192,14 +193,13 @@ public class AudiosImportActivity extends BaseActivity implements OnItemClickLis
 
 
         btnImport.setOnClickListener(view -> {
-            if (GoogleAds.adsdisplay) {
-                GoogleAds.showFullAds(AudiosImportActivity.this, () -> {
-                    GoogleAds.allcount60.start();
+            Advertisement.getInstance((AudiosImportActivity.this)).showFull(new Advertisement.MyCallback() {
+                @Override
+                public void callbackCall() {
                     OnImportClick();
-                });
-            } else {
-                OnImportClick();
-            }
+                }
+            });
+
         });
 
 

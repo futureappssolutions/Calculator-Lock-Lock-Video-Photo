@@ -35,7 +35,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.GoogleAds;
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.Advertisement;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Model.ImportAlbumEnt;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.R;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.common.Constants;
@@ -196,7 +196,7 @@ public class ImportAlbumsGalleryPhotoActivity extends BaseActivity implements On
 
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        GoogleAds.showBannerAds(ImportAlbumsGalleryPhotoActivity.this, ll_banner);
+        Advertisement.showBanner(ImportAlbumsGalleryPhotoActivity.this, ll_banner);
 
         SecurityLocksCommon.IsAppDeactive = true;
         Common.IsWorkInProgress = false;
@@ -230,14 +230,7 @@ public class ImportAlbumsGalleryPhotoActivity extends BaseActivity implements On
         new DataLoadTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
         btnImport.setOnClickListener(view -> {
-            if (GoogleAds.adsdisplay) {
-                GoogleAds.showFullAds(ImportAlbumsGalleryPhotoActivity.this, () -> {
-                    GoogleAds.allcount60.start();
-                    OnImportClick();
-                });
-            } else {
-                OnImportClick();
-            }
+            OnImportClick();
         });
     }
 

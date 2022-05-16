@@ -33,7 +33,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 
-import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.GoogleAds;
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.Advertisement;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.BuildConfig;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.R;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.common.Constants;
@@ -206,7 +206,7 @@ public class Photos_Gallery_Actitvity extends BaseActivity {
         setContentView(R.layout.activity_photos_videos_gallery);
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        GoogleAds.showBannerAds(Photos_Gallery_Actitvity.this, ll_banner);
+        Advertisement.showBanner(Photos_Gallery_Actitvity.this, ll_banner);
 
         Common.IsPhoneGalleryLoad = true;
         SecurityLocksCommon.IsAppDeactive = true;

@@ -1,11 +1,9 @@
 package calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.database.Cursor;
 import android.graphics.Typeface;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -14,7 +12,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -32,11 +29,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 
-import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.GoogleAds;
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.Advertisement;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.BuildConfig;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.R;
-import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.extra.AlbumFile;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.extra.AlbumFolder;
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.notes.NotesCommon;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.panicswitch.AccelerometerManager;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.panicswitch.PanicSwitchActivityMethods;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.panicswitch.PanicSwitchCommon;
@@ -89,7 +86,6 @@ public class PhotosAlbumActivty extends BaseActivity {
     int _SortBy = 0;
 
 
-
     @Override
     public void onAccelerationChanged(float f, float f2, float f3) {
     }
@@ -105,7 +101,7 @@ public class PhotosAlbumActivty extends BaseActivity {
         setContentView(R.layout.activity_photos_videos_albums);
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        GoogleAds.showBannerAds(PhotosAlbumActivty.this, ll_banner);
+        Advertisement.showBanner(PhotosAlbumActivty.this, ll_banner);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         FloatingActionButton btn_Add_Album = findViewById(R.id.btn_Add_Album);
@@ -311,45 +307,22 @@ public class PhotosAlbumActivty extends BaseActivity {
         final EditText editText = inflate.findViewById(R.id.txt_AlbumName);
 
         inflate.findViewById(R.id.ll_Ok).setOnClickListener(view -> {
-            if (GoogleAds.adsdisplay) {
-                GoogleAds.showFullAds(PhotosAlbumActivty.this, () -> {
-                    GoogleAds.allcount60.start();
-                    if (editText.getEditableText().toString().length() <= 0 || editText.getText().toString().trim().isEmpty()) {
-                        Toast.makeText(PhotosAlbumActivty.this, R.string.lbl_Photos_Album_Create_Album_please_enter, Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    albumName = editText.getEditableText().toString();
-                    File file = new File(StorageOptionsCommon.STORAGEPATH + "/" + StorageOptionsCommon.PHOTOS + albumName);
-                    if (file.exists()) {
-                        Toast.makeText(PhotosAlbumActivty.this, "\"" + albumName + "\" already exist", Toast.LENGTH_SHORT).show();
-                    } else {
-                        file.mkdirs();
-                        AlbumsGalleryPhotosMethods albumsGalleryPhotosMethods = new AlbumsGalleryPhotosMethods();
-                        albumsGalleryPhotosMethods.AddAlbumToDatabase(PhotosAlbumActivty.this, albumName);
-                        Toast.makeText(PhotosAlbumActivty.this, R.string.lbl_Photos_Album_Create_Album_Success, Toast.LENGTH_SHORT).show();
-                        GetAlbumsFromDatabase();
-                        bottomSheetDialog.dismiss();
-                    }
-                });
-            } else {
-                if (editText.getEditableText().toString().length() <= 0 || editText.getText().toString().trim().isEmpty()) {
-                    Toast.makeText(PhotosAlbumActivty.this, R.string.lbl_Photos_Album_Create_Album_please_enter, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                albumName = editText.getEditableText().toString();
-                File file = new File(StorageOptionsCommon.STORAGEPATH + "/" + StorageOptionsCommon.PHOTOS + albumName);
-                if (file.exists()) {
-                    Toast.makeText(PhotosAlbumActivty.this, "\"" + albumName + "\" already exist", Toast.LENGTH_SHORT).show();
-                } else {
-                    file.mkdirs();
-                    AlbumsGalleryPhotosMethods albumsGalleryPhotosMethods = new AlbumsGalleryPhotosMethods();
-                    albumsGalleryPhotosMethods.AddAlbumToDatabase(PhotosAlbumActivty.this, albumName);
-                    Toast.makeText(PhotosAlbumActivty.this, R.string.lbl_Photos_Album_Create_Album_Success, Toast.LENGTH_SHORT).show();
-                    GetAlbumsFromDatabase();
-                    bottomSheetDialog.dismiss();
-                }
+            if (editText.getEditableText().toString().length() <= 0 || editText.getText().toString().trim().isEmpty()) {
+                Toast.makeText(PhotosAlbumActivty.this, R.string.lbl_Photos_Album_Create_Album_please_enter, Toast.LENGTH_SHORT).show();
+                return;
             }
-
+            albumName = editText.getEditableText().toString();
+            File file = new File(StorageOptionsCommon.STORAGEPATH + "/" + StorageOptionsCommon.PHOTOS + albumName);
+            if (file.exists()) {
+                Toast.makeText(PhotosAlbumActivty.this, "\"" + albumName + "\" already exist", Toast.LENGTH_SHORT).show();
+            } else {
+                file.mkdirs();
+                AlbumsGalleryPhotosMethods albumsGalleryPhotosMethods = new AlbumsGalleryPhotosMethods();
+                albumsGalleryPhotosMethods.AddAlbumToDatabase(PhotosAlbumActivty.this, albumName);
+                Toast.makeText(PhotosAlbumActivty.this, R.string.lbl_Photos_Album_Create_Album_Success, Toast.LENGTH_SHORT).show();
+                GetAlbumsFromDatabase();
+                bottomSheetDialog.dismiss();
+            }
         });
 
         inflate.findViewById(R.id.ll_Cancel).setOnClickListener(view -> bottomSheetDialog.dismiss());
@@ -468,7 +441,7 @@ public class PhotosAlbumActivty extends BaseActivity {
         super.onActivityResult(i, i2, intent);
         SecurityLocksCommon.IsAppDeactive = true;
         if (i == RESULT_LOAD_CAMERA && i2 == -1 && cacheDir != null) {
-            String str=new String();
+            String str = new String();
             try {
                 str = Utilities.NSHideFile(this, cacheDir, new File(StorageOptionsCommon.STORAGEPATH + StorageOptionsCommon.PHOTOS + albumName));
                 Utilities.NSEncryption(new File(str));

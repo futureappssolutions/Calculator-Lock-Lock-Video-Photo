@@ -1,6 +1,7 @@
 package calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -29,8 +30,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentActivity;
 
-import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.GoogleAds;
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.Advertisement;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.R;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.common.Constants;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.panicswitch.AccelerometerListener;
@@ -48,6 +50,8 @@ import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.galle
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.XMLParser.ToDoWriteInXML;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.utilities.Common;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.utilities.Utilities;
+
+import com.facebook.ads.NativeAdLayout;
 import com.flask.colorpicker.ColorPickerView;
 
 import java.util.ArrayList;
@@ -91,9 +95,9 @@ public class AddToDoActivity extends AppCompatActivity implements AccelerometerL
         ll_main = findViewById(R.id.ll_main);
         et_ToDoTitle = findViewById(R.id.et_ToDoTitle);
 
+        NativeAdLayout fl_native = findViewById(R.id.fl_native);
+        Advertisement.shoNativeAds(AddToDoActivity.this,fl_native);
 
-        FrameLayout fl_native = findViewById(R.id.fl_native);
-        GoogleAds.showNativeAds(AddToDoActivity.this, fl_native);
 
         inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -373,14 +377,8 @@ public class AddToDoActivity extends AppCompatActivity implements AccelerometerL
                     }
                     if (isNoSpecialCharsInNameExceptBrackets(toDoTitle)) {
                         Common.ToDoListName = toDoTitle;
-                        if (GoogleAds.adsdisplay) {
-                            GoogleAds.showFullAds(AddToDoActivity.this, () -> {
-                                GoogleAds.allcount60.start();
-                                SaveToDoList();
-                            });
-                        } else {
-                            SaveToDoList();
-                        }
+                        SaveToDoList();
+
                         break;
                     } else {
                         Toast.makeText(this, "Todo name is incorrect", Toast.LENGTH_SHORT).show();

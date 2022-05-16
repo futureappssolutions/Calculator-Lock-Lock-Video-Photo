@@ -1,6 +1,7 @@
 package calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -36,10 +37,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.GoogleAds;
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.Advertisement;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Model.ImportAlbumEnt;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Model.ImportEnt;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Model.Video;
@@ -181,7 +183,8 @@ public class ImportAlbumsGalleryVideoActivity extends AppCompatActivity implemen
         setContentView(R.layout.activity_import_album_list);
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        GoogleAds.showBannerAds(ImportAlbumsGalleryVideoActivity.this, ll_banner);
+        Advertisement.showBanner(ImportAlbumsGalleryVideoActivity.this, ll_banner);
+
 
         Progress = findViewById(R.id.prbLoading);
         album_import_ListView = findViewById(R.id.album_import_ListView);
@@ -214,14 +217,12 @@ public class ImportAlbumsGalleryVideoActivity extends AppCompatActivity implemen
         LoadData();
 
         btnImport.setOnClickListener(view -> {
-            if (GoogleAds.adsdisplay) {
-                GoogleAds.showFullAds(ImportAlbumsGalleryVideoActivity.this, () -> {
-                    GoogleAds.allcount60.start();
+            Advertisement.getInstance((ImportAlbumsGalleryVideoActivity.this)).showFull(new Advertisement.MyCallback() {
+                @Override
+                public void callbackCall() {
                     OnImportClick();
-                });
-            } else {
-                OnImportClick();
-            }
+                }
+            });
         });
     }
 

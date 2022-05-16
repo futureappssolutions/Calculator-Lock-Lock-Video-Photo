@@ -3,14 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Application/Future Apps Solution/Calculator Lock-Lock Video Photo/app/src/main/res/drawable/border.xml" value="0.2035" />
         <entry key="..\:/Application/Future Apps Solution/Calculator Lock-Lock Video Photo/app/src/main/res/layout/activity_audioplayer.xml" value="0.36666666666666664" />
+        <entry key="..\:/Application/Future Apps Solution/Calculator Lock-Lock Video Photo/app/src/main/res/layout/activity_documents.xml" value="0.36666666666666664" />
         <entry key="..\:/Application/Future Apps Solution/Calculator Lock-Lock Video Photo/app/src/main/res/layout/activity_gallery.xml" value="0.36666666666666664" />
         <entry key="..\:/Application/Future Apps Solution/Calculator Lock-Lock Video Photo/app/src/main/res/layout/activity_import_album_list.xml" value="0.36666666666666664" />
         <entry key="..\:/Application/Future Apps Solution/Calculator Lock-Lock Video Photo/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
         <entry key="..\:/Application/Future Apps Solution/Calculator Lock-Lock Video Photo/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Application/Future Apps Solution/Calculator Lock-Lock Video Photo/app/src/main/res/layout/activity_photos_videos_albums.xml" value="0.36666666666666664" />
+        <entry key="..\:/Application/Future Apps Solution/Calculator Lock-Lock Video Photo/app/src/main/res/layout/activity_todo_add.xml" value="0.36666666666666664" />
+        <entry key="..\:/Application/Future Apps Solution/Calculator Lock-Lock Video Photo/app/src/main/res/layout/ad_unified_new.xml" value="0.36666666666666664" />
         <entry key="..\:/Application/Future Apps Solution/Calculator Lock-Lock Video Photo/app/src/main/res/layout/album_add_edit_popup.xml" value="0.33" />
         <entry key="..\:/Application/Future Apps Solution/Calculator Lock-Lock Video Photo/app/src/main/res/layout/bottomsheet_import_edit_delete.xml" value="0.36666666666666664" />
+        <entry key="..\:/Application/Future Apps Solution/Calculator Lock-Lock Video Photo/app/src/main/res/layout/fb_native.xml" value="0.365625" />
         <entry key="..\:/Application/Future Apps Solution/Calculator Lock-Lock Video Photo/app/src/main/res/layout/item_audio_file_import.xml" value="0.36666666666666664" />
         <entry key="..\:/Application/Future Apps Solution/Calculator Lock-Lock Video Photo/app/src/main/res/layout/item_custom_gallery.xml" value="0.25" />
         <entry key="..\:/Application/Future Apps Solution/Calculator Lock-Lock Video Photo/app/src/main/res/layout/item_grid_layout.xml" value="0.25" />

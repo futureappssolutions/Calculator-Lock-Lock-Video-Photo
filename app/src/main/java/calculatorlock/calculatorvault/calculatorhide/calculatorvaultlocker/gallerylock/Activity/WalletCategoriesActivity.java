@@ -19,7 +19,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuItemCompat;
 
-import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.GoogleAds;
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.Advertisement;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.R;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.common.Constants;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.panicswitch.AccelerometerListener;
@@ -64,7 +64,7 @@ public class WalletCategoriesActivity extends AppCompatActivity implements Accel
 
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        GoogleAds.showBannerAds(WalletCategoriesActivity.this, ll_banner);
+        Advertisement.showBanner(WalletCategoriesActivity.this, ll_banner);
 
         CommonSharedPreferences walletSharedPreferences = CommonSharedPreferences.GetObject(this);
         categoryFileDB_List = new ArrayList<>();

@@ -3,14 +3,22 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('E:\\Application\\Future Apps Solution\\Calculator Lock-Lock Video Photo\\KeyStore\\calculator_lock.jks')
+            storePassword 'calculator_lock'
+            keyAlias 'calculator_lock'
+            keyPassword 'calculator_lock'
+        }
+    }
     compileSdk 31
 
     defaultConfig {
         applicationId "calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock"
         minSdk 21
         targetSdk 30
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.0.2"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -20,12 +28,20 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
     }
 
     packagingOptions {
@@ -50,12 +66,14 @@ dependencies {
     api 'com.makeramen:roundedimageview:2.3.0'
     api 'com.airbnb.android:lottie:5.0.2'
 
-    api 'com.google.ads.mediation:facebook:6.8.0.0'
-    api 'com.google.android.gms:play-services-ads:20.6.0'
-    api "androidx.lifecycle:lifecycle-extensions:2.2.0"
-    api "androidx.lifecycle:lifecycle-runtime-ktx:2.4.1"
-    //noinspection LifecycleAnnotationProcessorWithJava8
-    annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.4.1"
+//    api 'com.google.ads.mediation:facebook:6.8.0.0'
+//    api 'com.google.android.gms:play-services-ads:20.6.0'
+//    api "androidx.lifecycle:lifecycle-extensions:2.2.0"
+//    api "androidx.lifecycle:lifecycle-runtime-ktx:2.4.1"
+//    //noinspection LifecycleAnnotationProcessorWithJava8
+//    annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.4.1"
+
+    implementation 'com.facebook.android:audience-network-sdk:6.11.0'
 
     api 'com.dropbox.core:dropbox-core-sdk:5.1.1'
     api 'pub.devrel:easypermissions:3.0.0'

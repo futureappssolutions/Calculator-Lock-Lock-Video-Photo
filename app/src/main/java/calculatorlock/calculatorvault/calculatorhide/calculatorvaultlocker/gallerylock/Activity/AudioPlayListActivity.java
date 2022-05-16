@@ -1,7 +1,6 @@
 package calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -26,7 +25,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
-import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.GoogleAds;
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.Advertisement;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.R;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Adapter.AudioPlayListAdapter;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.DB.AudioPlayListDAL;
@@ -95,7 +94,7 @@ public class AudioPlayListActivity extends BaseActivity {
         LinearLayout ll_delete_btn = findViewById(R.id.ll_delete_btn);
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        GoogleAds.showBannerAds(AudioPlayListActivity.this, ll_banner);
+        Advertisement.showBanner(AudioPlayListActivity.this, ll_banner);
 
         gridView = findViewById(R.id.AlbumsGalleryGrid);
         Progress = findViewById(R.id.prbLoading);
@@ -244,9 +243,9 @@ public class AudioPlayListActivity extends BaseActivity {
         final EditText editText = inflate.findViewById(R.id.txt_AlbumName);
 
         inflate.findViewById(R.id.ll_Ok).setOnClickListener(view -> {
-            if (GoogleAds.adsdisplay) {
-                GoogleAds.showFullAds(AudioPlayListActivity.this, () -> {
-                    GoogleAds.allcount60.start();
+            Advertisement.getInstance((AudioPlayListActivity.this)).showFull(new Advertisement.MyCallback() {
+                @Override
+                public void callbackCall() {
                     if (editText.getEditableText().toString().length() <= 0 || editText.getText().toString().trim().isEmpty()) {
                         Toast.makeText(AudioPlayListActivity.this, R.string.lbl_Photos_Album_Create_Album_please_enter, Toast.LENGTH_SHORT).show();
                         return;
@@ -263,26 +262,8 @@ public class AudioPlayListActivity extends BaseActivity {
                         GetAlbumsFromDatabase();
                         bottomSheetDialog.dismiss();
                     }
-                });
-            } else {
-                if (editText.getEditableText().toString().length() <= 0 || editText.getText().toString().trim().isEmpty()) {
-                    Toast.makeText(AudioPlayListActivity.this, R.string.lbl_Photos_Album_Create_Album_please_enter, Toast.LENGTH_SHORT).show();
-                    return;
                 }
-                albumName = editText.getEditableText().toString();
-                File file = new File(StorageOptionsCommon.STORAGEPATH + "/" + StorageOptionsCommon.AUDIOS + albumName);
-                if (file.exists()) {
-                    Toast.makeText(AudioPlayListActivity.this, "\"" + albumName + "\" already exist", Toast.LENGTH_SHORT).show();
-                } else {
-                    file.mkdirs();
-                    AudioPlaylistGalleryMethods audioPlaylistGalleryMethods = new AudioPlaylistGalleryMethods();
-                    audioPlaylistGalleryMethods.AddPlaylistToDatabase(AudioPlayListActivity.this, albumName);
-                    Toast.makeText(AudioPlayListActivity.this, R.string.lbl_Photos_Album_Create_Album_Success, Toast.LENGTH_SHORT).show();
-                    GetAlbumsFromDatabase();
-                    bottomSheetDialog.dismiss();
-                }
-            }
-
+            });
         });
 
         inflate.findViewById(R.id.ll_Cancel).setOnClickListener(view -> bottomSheetDialog.dismiss());

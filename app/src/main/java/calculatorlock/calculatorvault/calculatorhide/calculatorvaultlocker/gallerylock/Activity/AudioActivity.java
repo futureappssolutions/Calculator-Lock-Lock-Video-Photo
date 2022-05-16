@@ -31,7 +31,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 
-import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.GoogleAds;
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.Advertisement;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.common.Flaes;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.R;
 import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.DB.AudioDAL;
@@ -199,7 +199,7 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener 
 
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        GoogleAds.showBannerAds(AudioActivity.this, ll_banner);
+        Advertisement.showBanner(AudioActivity.this, ll_banner);
 
         ll_EditAlbum = findViewById(R.id.ll_EditAlbum);
         imagegrid = findViewById(R.id.customGalleryGrid);

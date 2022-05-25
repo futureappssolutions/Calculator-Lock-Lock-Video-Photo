@@ -1,6 +1,7 @@
 package calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -152,7 +153,7 @@ public class AudiosImportActivity extends BaseActivity implements OnItemClickLis
 
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        Advertisement.showBanner(AudiosImportActivity.this, ll_banner);
+        Advertisement.showBannerAds(AudiosImportActivity.this, ll_banner);
 
         btnSelectAll = findViewById(R.id.btnSelectAll);
         album_import_ListView = findViewById(R.id.album_import_ListView);
@@ -193,13 +194,9 @@ public class AudiosImportActivity extends BaseActivity implements OnItemClickLis
 
 
         btnImport.setOnClickListener(view -> {
-            Advertisement.getInstance((AudiosImportActivity.this)).showFull(new Advertisement.MyCallback() {
-                @Override
-                public void callbackCall() {
-                    OnImportClick();
-                }
+            Advertisement.getInstance((AudiosImportActivity.this)).showFull((AudiosImportActivity.this), () -> {
+                OnImportClick();
             });
-
         });
 
 

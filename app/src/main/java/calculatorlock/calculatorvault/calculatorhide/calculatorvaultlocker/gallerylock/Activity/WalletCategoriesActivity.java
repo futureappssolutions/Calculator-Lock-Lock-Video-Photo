@@ -64,7 +64,7 @@ public class WalletCategoriesActivity extends AppCompatActivity implements Accel
 
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        Advertisement.showBanner(WalletCategoriesActivity.this, ll_banner);
+        Advertisement.showBannerAds(WalletCategoriesActivity.this, ll_banner);
 
         CommonSharedPreferences walletSharedPreferences = CommonSharedPreferences.GetObject(this);
         categoryFileDB_List = new ArrayList<>();

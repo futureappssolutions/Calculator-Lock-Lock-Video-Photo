@@ -3,11 +3,14 @@ package calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gall
 import android.app.Application;
 
 import com.facebook.ads.AudienceNetworkAds;
+import com.google.android.gms.ads.MobileAds;
+
+import calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Ads.AppOpenManager;
 
 
 public class CustomApplicationClass extends Application {
     public static CustomApplicationClass application;
-    //AppOpenManager appOpenManager;
+    AppOpenManager appOpenManager;
 
     public CustomApplicationClass() {
         application = this;
@@ -19,15 +22,16 @@ public class CustomApplicationClass extends Application {
         }
         return application;
     }
+
     @Override
     public void onCreate() {
         super.onCreate();
         application = this;
         AudienceNetworkAds.initialize(this);
 
-//        MobileAds.initialize(this, initializationStatus -> {
-//        });
+        MobileAds.initialize(this, initializationStatus -> {
+        });
 
-        //appOpenManager = new AppOpenManager(this);
+        appOpenManager = new AppOpenManager(this);
     }
 }

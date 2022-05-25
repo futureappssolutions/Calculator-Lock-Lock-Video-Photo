@@ -68,7 +68,7 @@ public class MyCalculatorActivity extends AppCompatActivity {
         }
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        Advertisement.showBanner(MyCalculatorActivity.this, ll_banner);
+        Advertisement.showBannerAds(MyCalculatorActivity.this, ll_banner);
 
         securityCredentialsSharedPreferences = SecurityLocksSharedPreferences.GetObject(this);
         SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());

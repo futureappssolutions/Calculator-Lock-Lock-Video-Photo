@@ -180,7 +180,7 @@ public class DocumentsActivity extends BaseActivity {
 
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        Advertisement.showBanner(DocumentsActivity.this, ll_banner);
+        Advertisement.showBannerAds(DocumentsActivity.this, ll_banner);
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);

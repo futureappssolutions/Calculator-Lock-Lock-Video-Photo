@@ -101,7 +101,7 @@ public class PhotosAlbumActivty extends BaseActivity {
         setContentView(R.layout.activity_photos_videos_albums);
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        Advertisement.showBanner(PhotosAlbumActivty.this, ll_banner);
+        Advertisement.showBannerAds(PhotosAlbumActivty.this, ll_banner);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         FloatingActionButton btn_Add_Album = findViewById(R.id.btn_Add_Album);

@@ -111,7 +111,7 @@ public class DocumentsFolderActivity extends AppCompatActivity implements Accele
 
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        Advertisement.showBanner(DocumentsFolderActivity.this, ll_banner);
+        Advertisement.showBannerAds(DocumentsFolderActivity.this, ll_banner);
 
         gridView = findViewById(R.id.AlbumsGalleryGrid);
         Progress = findViewById(R.id.prbLoading);

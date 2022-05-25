@@ -1,6 +1,7 @@
 package calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gallerylock.Activity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -19,6 +20,7 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -89,12 +91,12 @@ public class AudioPlayListActivity extends BaseActivity {
 
         FloatingActionButton btn_Add_Album = findViewById(R.id.btn_Add_Album);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        LinearLayout ll_background = findViewById(R.id.ll_background);
+        RelativeLayout ll_background = findViewById(R.id.ll_background);
         LinearLayout ll_rename_btn = findViewById(R.id.ll_rename_btn);
         LinearLayout ll_delete_btn = findViewById(R.id.ll_delete_btn);
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        Advertisement.showBanner(AudioPlayListActivity.this, ll_banner);
+        Advertisement.showBannerAds(AudioPlayListActivity.this, ll_banner);
 
         gridView = findViewById(R.id.AlbumsGalleryGrid);
         Progress = findViewById(R.id.prbLoading);
@@ -243,25 +245,22 @@ public class AudioPlayListActivity extends BaseActivity {
         final EditText editText = inflate.findViewById(R.id.txt_AlbumName);
 
         inflate.findViewById(R.id.ll_Ok).setOnClickListener(view -> {
-            Advertisement.getInstance((AudioPlayListActivity.this)).showFull(new Advertisement.MyCallback() {
-                @Override
-                public void callbackCall() {
-                    if (editText.getEditableText().toString().length() <= 0 || editText.getText().toString().trim().isEmpty()) {
-                        Toast.makeText(AudioPlayListActivity.this, R.string.lbl_Photos_Album_Create_Album_please_enter, Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    albumName = editText.getEditableText().toString();
-                    File file = new File(StorageOptionsCommon.STORAGEPATH + "/" + StorageOptionsCommon.AUDIOS + albumName);
-                    if (file.exists()) {
-                        Toast.makeText(AudioPlayListActivity.this, "\"" + albumName + "\" already exist", Toast.LENGTH_SHORT).show();
-                    } else {
-                        file.mkdirs();
-                        AudioPlaylistGalleryMethods audioPlaylistGalleryMethods = new AudioPlaylistGalleryMethods();
-                        audioPlaylistGalleryMethods.AddPlaylistToDatabase(AudioPlayListActivity.this, albumName);
-                        Toast.makeText(AudioPlayListActivity.this, R.string.lbl_Photos_Album_Create_Album_Success, Toast.LENGTH_SHORT).show();
-                        GetAlbumsFromDatabase();
-                        bottomSheetDialog.dismiss();
-                    }
+            Advertisement.getInstance((AudioPlayListActivity.this)).showFull((AudioPlayListActivity.this), () -> {
+                if (editText.getEditableText().toString().length() <= 0 || editText.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(AudioPlayListActivity.this, R.string.lbl_Photos_Album_Create_Album_please_enter, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                albumName = editText.getEditableText().toString();
+                File file = new File(StorageOptionsCommon.STORAGEPATH + "/" + StorageOptionsCommon.AUDIOS + albumName);
+                if (file.exists()) {
+                    Toast.makeText(AudioPlayListActivity.this, "\"" + albumName + "\" already exist", Toast.LENGTH_SHORT).show();
+                } else {
+                    file.mkdirs();
+                    AudioPlaylistGalleryMethods audioPlaylistGalleryMethods = new AudioPlaylistGalleryMethods();
+                    audioPlaylistGalleryMethods.AddPlaylistToDatabase(AudioPlayListActivity.this, albumName);
+                    Toast.makeText(AudioPlayListActivity.this, R.string.lbl_Photos_Album_Create_Album_Success, Toast.LENGTH_SHORT).show();
+                    GetAlbumsFromDatabase();
+                    bottomSheetDialog.dismiss();
                 }
             });
         });

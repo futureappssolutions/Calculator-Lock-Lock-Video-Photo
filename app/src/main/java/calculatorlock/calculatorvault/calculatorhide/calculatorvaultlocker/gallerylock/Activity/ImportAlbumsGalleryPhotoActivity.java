@@ -196,7 +196,7 @@ public class ImportAlbumsGalleryPhotoActivity extends BaseActivity implements On
 
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        Advertisement.showBanner(ImportAlbumsGalleryPhotoActivity.this, ll_banner);
+        Advertisement.showBannerAds(ImportAlbumsGalleryPhotoActivity.this, ll_banner);
 
         SecurityLocksCommon.IsAppDeactive = true;
         Common.IsWorkInProgress = false;

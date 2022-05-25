@@ -165,7 +165,7 @@ public class DocumentsImportActivity extends Activity implements AccelerometerLi
 
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        Advertisement.showBanner(DocumentsImportActivity.this, ll_banner);
+        Advertisement.showBannerAds(DocumentsImportActivity.this, ll_banner);
 
         SecurityLocksCommon.IsAppDeactive = true;
         Common.IsWorkInProgress = false;
@@ -207,11 +207,8 @@ public class DocumentsImportActivity extends Activity implements AccelerometerLi
         }
 
         btnImport.setOnClickListener(view -> {
-            Advertisement.getInstance((DocumentsImportActivity.this)).showFull(new Advertisement.MyCallback() {
-                @Override
-                public void callbackCall() {
-                    OnImportClick();
-                }
+            Advertisement.getInstance((DocumentsImportActivity.this)).showFull((DocumentsImportActivity.this), () -> {
+                OnImportClick();
             });
         });
 

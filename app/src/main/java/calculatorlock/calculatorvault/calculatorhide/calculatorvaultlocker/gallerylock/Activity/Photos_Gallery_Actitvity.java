@@ -206,7 +206,7 @@ public class Photos_Gallery_Actitvity extends BaseActivity {
         setContentView(R.layout.activity_photos_videos_gallery);
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        Advertisement.showBanner(Photos_Gallery_Actitvity.this, ll_banner);
+        Advertisement.showBannerAds(Photos_Gallery_Actitvity.this, ll_banner);
 
         Common.IsPhoneGalleryLoad = true;
         SecurityLocksCommon.IsAppDeactive = true;

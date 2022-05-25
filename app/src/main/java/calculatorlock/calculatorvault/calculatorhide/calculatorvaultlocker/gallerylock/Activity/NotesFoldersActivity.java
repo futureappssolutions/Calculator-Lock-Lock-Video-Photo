@@ -89,7 +89,7 @@ public class NotesFoldersActivity extends AppCompatActivity implements Accelerom
         LinearLayout ll_delete_btn = findViewById(R.id.ll_delete_btn);
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        Advertisement.showBanner(NotesFoldersActivity.this, ll_banner);
+        Advertisement.showBannerAds(NotesFoldersActivity.this, ll_banner);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 

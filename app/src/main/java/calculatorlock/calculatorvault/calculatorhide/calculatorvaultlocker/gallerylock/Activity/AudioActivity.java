@@ -199,7 +199,7 @@ public class AudioActivity extends BaseActivity implements View.OnClickListener 
 
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        Advertisement.showBanner(AudioActivity.this, ll_banner);
+        Advertisement.showBannerAds(AudioActivity.this, ll_banner);
 
         ll_EditAlbum = findViewById(R.id.ll_EditAlbum);
         imagegrid = findViewById(R.id.customGalleryGrid);

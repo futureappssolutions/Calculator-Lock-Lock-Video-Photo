@@ -64,7 +64,7 @@ public class ToDoActivity extends AppCompatActivity implements AccelerometerList
 
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        Advertisement.showBanner(ToDoActivity.this, ll_banner);
+        Advertisement.showBannerAds(ToDoActivity.this, ll_banner);
 
         FloatingActionButton fab_AddToDoTask = findViewById(R.id.fab_AddToDoTask);
         recList = findViewById(R.id.toDoCardList);

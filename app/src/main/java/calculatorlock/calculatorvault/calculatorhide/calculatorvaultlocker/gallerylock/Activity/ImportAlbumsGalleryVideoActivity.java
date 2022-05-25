@@ -183,7 +183,7 @@ public class ImportAlbumsGalleryVideoActivity extends AppCompatActivity implemen
         setContentView(R.layout.activity_import_album_list);
 
         LinearLayout ll_banner = findViewById(R.id.ll_banner);
-        Advertisement.showBanner(ImportAlbumsGalleryVideoActivity.this, ll_banner);
+        Advertisement.showBannerAds(ImportAlbumsGalleryVideoActivity.this, ll_banner);
 
 
         Progress = findViewById(R.id.prbLoading);
@@ -217,11 +217,8 @@ public class ImportAlbumsGalleryVideoActivity extends AppCompatActivity implemen
         LoadData();
 
         btnImport.setOnClickListener(view -> {
-            Advertisement.getInstance((ImportAlbumsGalleryVideoActivity.this)).showFull(new Advertisement.MyCallback() {
-                @Override
-                public void callbackCall() {
-                    OnImportClick();
-                }
+            Advertisement.getInstance((ImportAlbumsGalleryVideoActivity.this)).showFull((ImportAlbumsGalleryVideoActivity.this), () -> {
+                OnImportClick();
             });
         });
     }

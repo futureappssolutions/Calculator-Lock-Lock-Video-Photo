@@ -2,6 +2,7 @@ package calculatorlock.calculatorvault.calculatorhide.calculatorvaultlocker.gall
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -86,9 +87,8 @@ public class ActivityMain extends AppCompatActivity implements AccelerometerList
         setContentView(R.layout.activity_main);
 
 
-        NativeAdLayout  fl_native = findViewById(R.id.fl_native);
-        Advertisement.shoNativeAds(ActivityMain.this,fl_native);
-
+        FrameLayout fl_native = findViewById(R.id.fl_native);
+        Advertisement.showNativeAds(ActivityMain.this, fl_native);
 
 
         invalidateOptionsMenu();
@@ -185,76 +185,59 @@ public class ActivityMain extends AppCompatActivity implements AccelerometerList
 
     private void IntergerActivty(int i) {
         if (i == 0) {
-            Advertisement.getInstance((ActivityMain.this)).showFull(new Advertisement.MyCallback() {
-                @Override
-                public void callbackCall() {
-                    startActivity(new Intent(ActivityMain.this, PhotosAlbumActivty.class));
-                    finish();
-                }
+            Advertisement.getInstance(ActivityMain.this).showFull(ActivityMain.this, () -> {
+                startActivity(new Intent(ActivityMain.this, PhotosAlbumActivty.class));
+                finish();
             });
+
         } else if (i == 1) {
-            Advertisement.getInstance((ActivityMain.this)).showFull(new Advertisement.MyCallback() {
-                @Override
-                public void callbackCall() {
-                    startActivity(new Intent(ActivityMain.this, VideosAlbumActivty.class));
-                    finish();
-                }
+            Advertisement.getInstance(ActivityMain.this).showFull(ActivityMain.this, () -> {
+                startActivity(new Intent(ActivityMain.this, VideosAlbumActivty.class));
+                finish();
             });
 
         } else if (i == 2) {
-            Advertisement.getInstance((ActivityMain.this)).showFull(new Advertisement.MyCallback() {
-                @Override
-                public void callbackCall() {
-                    startActivity(new Intent(ActivityMain.this, GalleryActivity.class));
-                    finish();
-                }
+            Advertisement.getInstance(ActivityMain.this).showFull(ActivityMain.this, () -> {
+                startActivity(new Intent(ActivityMain.this, GalleryActivity.class));
+                finish();
             });
 
+
         } else if (i == 3) {
-            Advertisement.getInstance((ActivityMain.this)).showFull(new Advertisement.MyCallback() {
-                @Override
-                public void callbackCall() {
-                    startActivity(new Intent(ActivityMain.this, AudioPlayListActivity.class));
-                    finish();
-                }
+            Advertisement.getInstance(ActivityMain.this).showFull(ActivityMain.this, () -> {
+                startActivity(new Intent(ActivityMain.this, AudioPlayListActivity.class));
+                finish();
             });
+
 
 
         } else if (i == 4) {
-            Advertisement.getInstance((ActivityMain.this)).showFull(new Advertisement.MyCallback() {
-                @Override
-                public void callbackCall() {
-                    startActivity(new Intent(ActivityMain.this, DocumentsFolderActivity.class));
-                    finish();
-                }
+            Advertisement.getInstance(ActivityMain.this).showFull(ActivityMain.this, () -> {
+                startActivity(new Intent(ActivityMain.this, DocumentsFolderActivity.class));
+                finish();
             });
 
+
         } else if (i == 5) {
-            Advertisement.getInstance((ActivityMain.this)).showFull(new Advertisement.MyCallback() {
-                @Override
-                public void callbackCall() {
-                    startActivity(new Intent(ActivityMain.this, WalletCategoriesActivity.class));
-                    finish();
-                }
+            Advertisement.getInstance(ActivityMain.this).showFull(ActivityMain.this, () -> {
+                startActivity(new Intent(ActivityMain.this, WalletCategoriesActivity.class));
+                finish();
             });
 
         } else if (i == 6) {
-            Advertisement.getInstance((ActivityMain.this)).showFull(new Advertisement.MyCallback() {
-                @Override
-                public void callbackCall() {
-                    startActivity(new Intent(ActivityMain.this, NotesFoldersActivity.class));
-                    finish();
-                }
+            Advertisement.getInstance(ActivityMain.this).showFull(ActivityMain.this, () -> {
+                startActivity(new Intent(ActivityMain.this, NotesFoldersActivity.class));
+                finish();
             });
 
+
+
         } else if (i == 7) {
-            Advertisement.getInstance((ActivityMain.this)).showFull(new Advertisement.MyCallback() {
-                @Override
-                public void callbackCall() {
-                    startActivity(new Intent(ActivityMain.this, ToDoActivity.class));
-                    finish();
-                }
+            Advertisement.getInstance(ActivityMain.this).showFull(ActivityMain.this, () -> {
+                startActivity(new Intent(ActivityMain.this, ToDoActivity.class));
+                finish();
             });
+
         }
     }
 

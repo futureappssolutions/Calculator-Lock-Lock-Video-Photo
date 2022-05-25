@@ -95,9 +95,9 @@ public class AddToDoActivity extends AppCompatActivity implements AccelerometerL
         ll_main = findViewById(R.id.ll_main);
         et_ToDoTitle = findViewById(R.id.et_ToDoTitle);
 
-        NativeAdLayout fl_native = findViewById(R.id.fl_native);
-        Advertisement.shoNativeAds(AddToDoActivity.this,fl_native);
 
+        FrameLayout fl_native = findViewById(R.id.fl_native);
+        Advertisement.showNativeAds(AddToDoActivity.this, fl_native);
 
         inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);

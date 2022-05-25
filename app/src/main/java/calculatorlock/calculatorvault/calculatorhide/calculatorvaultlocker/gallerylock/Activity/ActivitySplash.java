@@ -45,7 +45,6 @@ public class ActivitySplash extends AppCompatActivity {
         Preferences.setRemove_ads_monthly("monthly_key");
         Preferences.setRemove_ads_yearly("yearly_key");
 
-        AdSettings.setIntegrationErrorMode(AdSettings.IntegrationErrorMode.INTEGRATION_ERROR_CALLBACK_MODE);
         Advertisement.preLoadAds(ActivitySplash.this);
 
 
